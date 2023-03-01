@@ -1,0 +1,45 @@
+.home_container {
+    height: 100vh;
+}
+
+.navbar {
+    background-color: rgba(247, 246, 246, 0.628);
+    display: flex;
+    justify-content: space-between;
+}
+
+img {
+    height: 70px;
+    padding: 10px;
+}
+
+
+.login {
+    padding: 0 2rem;
+    font-size: 16px;
+    font-weight: 600;
+    height: 40px;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    border: none;
+    margin: 14px;
+
+
+}
+
+.signup {
+    padding: 0 2rem;
+    font-size: 16px;
+    font-weight: 600;
+    height: 40px;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    border: none;
+    color: white;
+    background-color: black;
+    margin: 14px;
+}
