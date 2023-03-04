@@ -2,11 +2,9 @@ import React from 'react'
 import swiggyLogo  from "../assets/Swiggy Logo.png"
 import styles from "./Navbar.module.css"
 
-export default function Navbar() {
-  
-    function openSideBar(){
-        console.log("first");
-    }
+export default function Navbar(props) {
+    
+    const{handleLoginOpen,handleSignupOpen}=props;
 
 
     return (
@@ -16,11 +14,10 @@ export default function Navbar() {
                     <img src={swiggyLogo} alt="Swiggy-Logo"></img>
                 </div>
                 <div>
-                    <button className={styles.login} onClick={openSideBar}>Login</button>
-                    <button className={styles.signup} onClick={openSideBar}>Signup</button>
+                    <button className={styles.login} onClick={handleLoginOpen}>Login</button>
+                    <button className={styles.signup} onClick={handleSignupOpen}>Signup</button>
                 </div>
-            </div>
-            
+            </div>           
         </React.Fragment>
     )
 }

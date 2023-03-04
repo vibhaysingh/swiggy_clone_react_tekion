@@ -1,16 +1,18 @@
 import React from 'react'
+import sidebar_image from "../assets/sidebar_food.png"
+import styles from "./Login.module.css"
 
-function Login() {
+function Login(props) {
     return (
-        <div id="mySidenav" className="sidenav">
-            <a id="cross" href="javascript:void(0)" className="closebtn" onclick="closeNav()">×</a>
-            <p className="navlogin">Login</p>
-            <p className="create_acc"><span>or</span><a href> create an account</a></p>
-            <div className="loginFood"><img src="./assets/login_food.png" alt /></div>
-            <div className="loginInput"><input type="text" placeholder="Phone Number" /></div>
-            <div className="loginButton"><button>LOGIN</button></div>
-            <div className="terms">By clicking on Login, I accept the <strong>Terms &amp; Conditions</strong> &amp; <strong> Privacy
-                Policy </strong> </div>
+        <div className={`${styles.sidenav} ${props.isOpen ? styles['drawer_open']: ''}`}>
+            <div className={styles.cross} onClick={props.isClose}></div>
+            <p className={styles.navlogin}>Login</p>
+            <p className={styles.create_acc}><span>or</span><a href> create an account</a></p>
+            <div className={styles.loginFood}><img src={sidebar_image} alt='' /></div>
+            <div className={styles.loginInput}><input type="text" placeholder="Phone Number" /></div>
+            <div className={styles.loginButton}><button>LOGIN</button></div>
+            <div className={styles.terms}>By clicking on Login, I accept the <strong>Terms &amp; Conditions</strong> &amp; <strong> Privacy Policy </strong>
+            </div>
         </div>
 
     )
