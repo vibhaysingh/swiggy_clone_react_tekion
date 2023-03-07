@@ -11,7 +11,7 @@ function Signup(props) {
                 Sign up
             </p>
             <p className={styles.signup_acc}>
-                <span>or </span><a href> login to your account</a>
+                <span>or </span><a href="true"> login to your account</a>
             </p>
             <div className={styles.signupfood}>
                 <img src={sidebar_food} alt="" />

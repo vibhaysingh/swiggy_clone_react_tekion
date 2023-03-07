@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { SkeletonTheme } from 'react-loading-skeleton';
+import { BrowserRouter } from "react-router-dom";
 import Caraousel from "./components/Caraousel";
 import CardContainer from "./components/CardContainer";
 import FoodNavbar from "./components/FoodNavbar";
@@ -11,7 +13,7 @@ import "./index.css";
 function App() {
   const [isLoginSidebarOpen, setIsLoginSidebarOpen] = useState(false);
   const [isSignupSidebarOpen, setIsSignupSidebarOpen] = useState(false);
-
+  const [filter, setFilter] = useState('RELEVANCE');
   const handleLoginSidebarOpen = () => {
     document.body.classList.add("body-fixed");
     setIsLoginSidebarOpen(true);
@@ -28,18 +30,23 @@ function App() {
     document.body.classList.remove("body-fixed");
     setIsSignupSidebarOpen(false);
   }
+   
+  
   return (
     <div>
-      <div className={(isLoginSidebarOpen || isSignupSidebarOpen) ? "overlay" : ''}></div>
-      <Navbar handleLoginOpen={handleLoginSidebarOpen} handleSignupOpen={handleSignupSidebarOpen} />
-      <Signup />
-      <Login />
-      <Login isOpen={isLoginSidebarOpen} isClose={handleLoginSidebarClose} />
-      <Signup isOpen={isSignupSidebarOpen} isClose={handleSignupSidebarClose} />
-      <Caraousel />
-      <FoodNavbar />
-      <CardContainer />
-
+      {/* <SkeletonTheme baseColor="#202020" highlightColor="#444"> */}
+        <BrowserRouter>
+          <div className={(isLoginSidebarOpen || isSignupSidebarOpen) ? "overlay" : ''}></div>
+          <Navbar handleLoginOpen={handleLoginSidebarOpen} handleSignupOpen={handleSignupSidebarOpen} />
+          <Signup />
+          <Login />
+          <Login isOpen={isLoginSidebarOpen} isClose={handleLoginSidebarClose} />
+          <Signup isOpen={isSignupSidebarOpen} isClose={handleSignupSidebarClose} />
+          <Caraousel />
+          <FoodNavbar handlefilter={setFilter} />
+          <CardContainer  filter={filter}/>
+        </BrowserRouter>
+      {/* </SkeletonTheme> */}
     </div>
   );
 }

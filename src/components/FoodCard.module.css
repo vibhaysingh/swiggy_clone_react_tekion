@@ -51,6 +51,9 @@
     padding: 3px;
 
 }
+.rating_color_below4 {
+    background-color: #DB7C38;
+}
 
 .rating .text {
     color: #fff;
