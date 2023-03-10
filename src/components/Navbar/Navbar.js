@@ -1,5 +1,5 @@
 import React from 'react'
-import swiggyLogo  from "../assets/Swiggy Logo.png"
+import swiggyLogo  from "../../assets/Swiggy Logo.png"
 import styles from "./Navbar.module.css"
 
 export default function Navbar(props) {

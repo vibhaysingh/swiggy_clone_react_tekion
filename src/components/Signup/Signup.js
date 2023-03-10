@@ -1,5 +1,5 @@
 import React from 'react'
-import sidebar_food from "../assets/sidebar_food.png"
+import sidebar_food from "../../assets/sidebar_food.png"
 import styles from "./Signup.module.css"
 
 function Signup(props) {

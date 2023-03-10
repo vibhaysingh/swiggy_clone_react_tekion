@@ -1,52 +1,25 @@
-import { useState } from "react";
-import { SkeletonTheme } from 'react-loading-skeleton';
-import { BrowserRouter } from "react-router-dom";
-import Caraousel from "./components/Caraousel";
-import CardContainer from "./components/CardContainer";
-import FoodNavbar from "./components/FoodNavbar";
-import Login from "./components/Login";
-import Navbar from "./components/Navbar";
-import Signup from "./components/Signup";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Navigation from "./components/Navigation/Navigation";
+import ResturantDishes from "./components/resturantDishes/ResturantDishes";
 import "./index.css";
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./components/Home/Home";
 
 
 function App() {
-  const [isLoginSidebarOpen, setIsLoginSidebarOpen] = useState(false);
-  const [isSignupSidebarOpen, setIsSignupSidebarOpen] = useState(false);
-  const [filter, setFilter] = useState('RELEVANCE');
-  const handleLoginSidebarOpen = () => {
-    document.body.classList.add("body-fixed");
-    setIsLoginSidebarOpen(true);
-  }
-  const handleSignupSidebarOpen = () => {
-    document.body.classList.add("body-fixed");
-    setIsSignupSidebarOpen(true);
-  }
-  const handleLoginSidebarClose = () => {
-    document.body.classList.remove("body-fixed");
-    setIsLoginSidebarOpen(false);
-  }
-  const handleSignupSidebarClose = () => {
-    document.body.classList.remove("body-fixed");
-    setIsSignupSidebarOpen(false);
-  }
-   
-  
+
+
   return (
     <div>
-      {/* <SkeletonTheme baseColor="#202020" highlightColor="#444"> */}
-        <BrowserRouter>
-          <div className={(isLoginSidebarOpen || isSignupSidebarOpen) ? "overlay" : ''}></div>
-          <Navbar handleLoginOpen={handleLoginSidebarOpen} handleSignupOpen={handleSignupSidebarOpen} />
-          <Signup />
-          <Login />
-          <Login isOpen={isLoginSidebarOpen} isClose={handleLoginSidebarClose} />
-          <Signup isOpen={isSignupSidebarOpen} isClose={handleSignupSidebarClose} />
-          <Caraousel />
-          <FoodNavbar handlefilter={setFilter} />
-          <CardContainer  filter={filter}/>
-        </BrowserRouter>
-      {/* </SkeletonTheme> */}
+
+      <BrowserRouter>
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/restaurants/:id" element={<ResturantDishes />} />
+        </Routes>
+      </BrowserRouter>
+
     </div>
   );
 }

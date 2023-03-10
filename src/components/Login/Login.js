@@ -1,10 +1,10 @@
 import React from 'react'
-import sidebar_image from "../assets/sidebar_food.png"
+import sidebar_image from "../../assets/sidebar_food.png"
 import styles from "./Login.module.css"
 
 function Login(props) {
     return (
-        <div className={`${styles.sidenav} ${props.isOpen ? styles['drawer_open']: ''}`}>
+        <div className={`${styles.sidenav} ${props.isOpen ? styles['drawer_open'] : ''}`}>
             <div className={styles.cross} onClick={props.isClose}></div>
             <p className={styles.navlogin}>Login</p>
             <p className={styles.create_acc}><span>or</span><a href="true"> create an account</a></p>

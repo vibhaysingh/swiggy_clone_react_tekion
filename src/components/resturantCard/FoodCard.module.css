@@ -1,10 +1,10 @@
 .card_container {
     padding: 20px;
-    /* background-color: green; */
     padding: 20px 20px 27px;
     border: 1px solid transparent;
     contain: content;
     width: 24%;
+    cursor: pointer;
 
 }
 

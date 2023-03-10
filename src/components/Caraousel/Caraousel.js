@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import foodImage from "../assets/food5.png";
+import foodImage from "../../assets/food5.png";
 import styles from "./Caraousel.module.css";
 function Caraousel() {
 
