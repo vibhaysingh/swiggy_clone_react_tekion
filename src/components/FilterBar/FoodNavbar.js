@@ -7,10 +7,7 @@ function FoodNavbar(props) {
 
     function handleClick(index, filter) {
         setClickedIndex(index);
-        // console.log(event.target.textContent)
         props.handlefilter(filter);
-        
-
     }
 
     return (

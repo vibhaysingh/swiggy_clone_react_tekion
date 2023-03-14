@@ -1,25 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { v4 as uuidv4 } from 'uuid';
-import { IMG_CDN_URL } from "../../constant";
+import { IMG_CDN_URL } from "../../constants/constant";
 import CardSkeleton from '../CardLoader/CardSkeleton';
 import FoodCard from '../resturantCard/FoodCard';
 import styles from "./CardContainer.module.css";
 
-
-
 export default function CardContainer(props) {
-
-  console.log(props.filter);
   const [foodCards, setFoodCads] = useState([]);
   const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const swiggyApiLink = `https://corsanywhere.herokuapp.com/https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9580044&lng=77.7089009&offset=${offset}&sortBy=${props?.filter}&pageType=SEE_ALL&page_type=DESKTOP_SEE_ALL_LISTING`;
-
-
-
-
-
   const getData = async () => {
     try {
       let rawData = await fetch(swiggyApiLink);
@@ -29,7 +20,6 @@ export default function CardContainer(props) {
       }
       else {
         setFoodCads((foodCards) => [...foodCards, ...data?.data?.cards]);
-        console.log(data);
         setOffset((prevOffset) => prevOffset + 15);
       }
     } catch (e) {
@@ -70,7 +60,6 @@ export default function CardContainer(props) {
 
               />)) : (<CardSkeleton count={16} />)
         }
-        {/* {foodCards.length ? (<CardSkeleton count={4} />):(<div></div>)} */}
       </div>
     </InfiniteScroll>
   )

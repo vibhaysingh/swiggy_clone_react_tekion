@@ -4,9 +4,18 @@
 
 
 .navbar {
-    background-color: rgba(247, 246, 246, 0.628);
+    background-color: rgb(247, 246, 246);
     display: flex;
     justify-content: space-between;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    width: 100%;
+}
+
+.nav_buttons {
+    display: flex;
+    align-items: center;
 }
 
 .swiggy_logo>img {
@@ -22,7 +31,7 @@
     height: 40px;
     text-decoration: none;
     cursor: pointer;
-    display: inline-block;
+    /* display: inline-block; */
     text-align: center;
     border: none;
     margin: 14px;
@@ -35,10 +44,51 @@
     height: 40px;
     text-decoration: none;
     cursor: pointer;
-    display: inline-block;
     text-align: center;
     border: none;
     color: white;
     background-color: black;
     margin: 14px;
+}
+
+.cart_button {
+   
+    cursor: pointer;
+    padding-right: 10px;
+
+}
+
+.cart_button_link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #3D4152;
+    height: 40px; 
+}
+
+.cart_logo {
+    display: flex;
+    position: relative;
+}
+
+.cart_text {
+    font-weight: 520;
+    font-size: 18px;
+    padding-left: 5px;
+}
+
+.cart_quantity {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: white;
+    transform: translate(-54%, -48%);
+    font-size: 13px;
+    font-weight: 500;
+
+
+}
+
+.cart_logo:first-child {
+   
 }

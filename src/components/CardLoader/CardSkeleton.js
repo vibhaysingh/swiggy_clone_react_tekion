@@ -1,6 +1,7 @@
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
 import styles from "./CardSkeleton.module.css"
+import 'react-loading-skeleton/dist/skeleton.css'
 import { v4 as uuidv4 } from 'uuid';
 function CardSkeleton({ count }) {
     const cards = [];

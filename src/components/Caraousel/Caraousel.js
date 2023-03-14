@@ -25,12 +25,10 @@ function Caraousel() {
     }
 
     const handleRightShift = () => {
-        console.log(caraouselImages.length)
         if (counter < caraouselImages.length - 4) {
             setdisplayLeftArrow('visible')
             setCurrentPixel((prevPixel) => prevPixel + 317)
             setCounter((prevCounter) => prevCounter + 1)
-            // console.log(caraouselImages.length - 4)
             if (counter === caraouselImages.length - 5) {
                 setdisplayRightArrow('hidden');
             }

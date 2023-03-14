@@ -5,10 +5,10 @@
     padding: 0 20px;
     padding-top: 50px;
     padding-bottom: 30px;
+    margin-top: 75px;
 }
 
 .resturant_info {
-    /* background-color: aqua; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -40,7 +40,6 @@
 }
 
 .resturat_rating_container {
-    /* background-color: yellow; */
     border: 1px solid #e9e9eb;
     box-shadow: 0 1px 5px #f9f9f9;
     border-radius: 6px;
@@ -62,7 +61,6 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    /* background-color: pink; */
 
 }
 
@@ -91,18 +89,20 @@
 }
 
 .offers_container {
-    overflow-x: scroll;  
+    overflow-x: scroll;
     display: flex;
     margin-top: 15px;
     padding-bottom: 30px;
     border-bottom: 1.5px solid #e9e9eb;
     gap: 9px;
     cursor: default;
-    
+
 }
-.offers_container::-webkit-scrollbar{
+
+.offers_container::-webkit-scrollbar {
     display: none;
 }
+
 .offer_container {
     border: 1px solid #e9e9eb;
     box-sizing: border-box;
@@ -168,7 +168,6 @@
     color: #282c3f;
     font-weight: 800;
     font-size: 19px;
-
 }
 
 .dish_card_container {
@@ -178,17 +177,13 @@
     padding: 0 9px;
     border-bottom: 1px solid rgba(128, 128, 128, 0.29);
     padding-bottom: 30px;
-    
 }
 
-.dish_card_left_content {
-   
-}
+.dish_card_left_content {}
 
 .veg_nonVeg_bestseller {
     display: flex;
     align-items: center;
-
 }
 
 .dish_name {
@@ -212,15 +207,13 @@
     letter-spacing: -0.3px;
     font-size: 12px;
     margin-top: 5px;
-
 }
 
 
 .dish_card_right_content {
-display: flex;
-justify-self: flex-end;
-flex-direction: column;
-
+    display: flex;
+    justify-self: flex-end;
+    flex-direction: column;
 }
 
 .dish_card_right_content>img {
@@ -232,7 +225,6 @@ flex-direction: column;
 }
 
 .add_button {
-
     position: relative;
     bottom: 25px;
     left: 12px;
@@ -243,7 +235,94 @@ flex-direction: column;
     border: 1px solid #d4d5d9;
     box-shadow: 0 3px 8px #e9e9eb;
     border-radius: 4px;
+    font-weight: 550;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    overflow: hidden;
+}
+
+.cartCard_ItemCount {
+    font-size: 13px;
+    color: green;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.add_button::after {
+    content: "";
+    background: #60b246;
+    position: absolute;
+    bottom: 0;
+    height: 1px;
+    width: 17%;
+    right: 100%;
+
+}
+
+.add_button.animation::after {
+    animation: slider;
+    animation-duration: 1.2s;
+    animation-iteration-count: 1;
+}
+
+
+@keyframes slider {
+
+    0% {
+        right: 0%;
+    }
+
+    50% {
+        right: 90%;
+    }
+
+    100% {
+        right: 0;
+    }
+
+}
+
+.cart_popup{
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(95, 178, 7);
+    padding: 15px 10px;
+    color: white;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    background-color: white;
+    position: fixed;
+    bottom: 0px;
+    width: 50%;
+    transition: all 0.5s ease-in-out;
+}
+.totalCartItems_and_totalCartPrice{
+    display: flex;
+    justify-content: space-evenly;
+}
+.totalCartItems_and_totalCartPrice>div{
+    margin-right: 7px;
+}
+.viewCart{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.viewCart>div:nth-child(2){
+   width: 14px;
+   height: 14px;
+   margin-left: 7px;
+}
+.viewCart>div:nth-child(2)>img{
+    width: 100%;
+    height: 100%;
+}
+.viewCart>div:nth-child(1){
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
 }

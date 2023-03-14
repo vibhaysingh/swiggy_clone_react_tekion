@@ -1,13 +1,10 @@
 import StarRateIcon from '@mui/icons-material/StarRate';
 import React, { Fragment, useState } from 'react';
 import { TbDiscount2 } from 'react-icons/tb';
-import 'react-loading-skeleton/dist/skeleton.css';
 import { useNavigate } from 'react-router-dom';
 import styles from "./FoodCard.module.css";
 
 function FoodCard(props) {
-
-
     const { imgUrl, title, cuisines, rating, deliveryTime, costForTwo, offers, id } = props;
     let cuisinesString = "";
     for (let cuisine of cuisines) {
@@ -20,7 +17,7 @@ function FoodCard(props) {
     }
     const navigation = useNavigate();
     const handleCardClick = () => {
-        navigation(`/restaurants/${id}`)
+        navigation(`/resturants/${id}`)
     }
 
     return (
