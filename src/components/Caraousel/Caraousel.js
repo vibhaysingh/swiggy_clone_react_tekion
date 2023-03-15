@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import foodImage from "../../assets/food5.png";
+
 import styles from "./Caraousel.module.css";
+
 function Caraousel() {
 
 
@@ -40,7 +42,7 @@ function Caraousel() {
         <div className={styles.caraousel_container}>
             <div className={styles['slider-container']}>
                 <div className={styles['slider-width']}>
-                    {caraouselImages.map((foodImage,index) => {
+                    {caraouselImages.map((foodImage, index) => {
                         return (
                             <div
                                 key={index}

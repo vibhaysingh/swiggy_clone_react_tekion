@@ -7,7 +7,6 @@ function Cart() {
     const totalCartprice = useSelector((state) => state.cart.totalCartprice);
     const imageLink = `https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/${cartItems[0]?.resturantImageId}`;
 
-    console.log(cartItems.length, 'tr')
     return (
         cartItems.length ? (
             <div className={styles.cart_page}>

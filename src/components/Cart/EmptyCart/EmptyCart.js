@@ -2,12 +2,13 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import emptyCartLink from '../../../assets/emptyCart.png';
 import styles from './EmptyCart.module.css';
-
 function EmptyCart() {
+
     const navigate = useNavigate();
     const redirectHandler = () => {
         navigate("/");
     }
+   
     return (
         <div className={styles.emptyCart_container}>
             <div className={styles.emptyCart_image}>

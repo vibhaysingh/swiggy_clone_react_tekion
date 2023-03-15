@@ -11,6 +11,7 @@ function FoodCard(props) {
         cuisinesString = cuisinesString + cuisine + ", ";
     }
     cuisinesString = cuisinesString.slice(0, -2);
+
     const [quickView, setQuickView] = useState(false);
     const handleQuickView = () => {
         setQuickView(prev => !prev);

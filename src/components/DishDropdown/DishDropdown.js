@@ -3,6 +3,7 @@ import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import DishCard from '../DishCard/DishCard';
+import Modal from "../Cart/Modal/Modal"
 import styles from "../resturantDishes/ResturantsDishes.module.css";
 
 function DishDropdown(props) {
@@ -20,7 +21,7 @@ function DishDropdown(props) {
     const handleCartPopup = () => {
         navigate("/cart");
     }
-
+    const [showModal, setShowModal] = useState(false);
     return (
         <div className={styles.dishes_dropdown_container}>
             {dropdownHeading && dropdownHeading.map((heading, index) => {
@@ -38,7 +39,14 @@ function DishDropdown(props) {
                             {
                                 clickedDropdown.includes(index) && heading.entities && heading.entities.map((dish, index) => {
                                     return (
-                                        <DishCard dishInfo={menu && menu[dish.id]} key={index} hideborder={index === heading.entities.length - 1} resturantName={resturantName} area={area} resturantImageId={resturantImageId} />
+                                        <DishCard 
+                                        dishInfo={menu && menu[dish.id]} 
+                                        key={index} 
+                                        hideborder={index === heading.entities.length - 1} resturantName={resturantName} 
+                                        area={area} 
+                                        resturantImageId={resturantImageId} 
+                                        handleModalShow={setShowModal}
+                                        />
                                     )
                                 })
                             }
@@ -50,7 +58,7 @@ function DishDropdown(props) {
                 style={{bottom:totalQuantity?'0':'-50px'}}
             >
                 <div className={styles.totalCartItems_and_totalCartPrice}>
-                    <div>{totalQuantity}      {" "}Item</div>
+                    <div>{totalQuantity}{" "}Item</div>
                     <div>|</div>
                     <div>₹{totalAmount}</div>
                 </div>
@@ -61,6 +69,7 @@ function DishDropdown(props) {
                     </div>
                 </div>
             </div>
+           {<Modal handleModalShow={setShowModal} showModal={showModal}/>}
         </div>
     )
 }

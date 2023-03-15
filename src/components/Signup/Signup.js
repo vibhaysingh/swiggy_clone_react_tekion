@@ -1,11 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import sidebar_food from "../../assets/sidebar_food.png"
 import styles from "./Signup.module.css"
 
 function Signup(props) {
     return (
         <div className={`${styles.sidenav} ${props.isOpen ? styles['drawer_open'] : ''}`}>
-
             <div className={styles.cross} onClick={props.isClose}></div>
             <p className={styles.navSignup}>
                 Sign up
@@ -34,8 +33,8 @@ function Signup(props) {
             <div className={styles.signup_terms}>
                 By creating an account, I accept the <strong>Terms &amp; Conditions</strong> &amp;<strong>Privacy Policy</strong>
             </div>
-        </div>
 
+        </div>
     )
 }
 

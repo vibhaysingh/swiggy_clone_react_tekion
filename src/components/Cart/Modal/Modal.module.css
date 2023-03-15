@@ -1,0 +1,63 @@
+.modalContainer {
+    padding: 25px;
+    width: 520px;
+    height: 200px;
+    background-color: white;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    position: fixed;
+    left: 32%;
+    transition: all 0.3s ease-in-out;
+    z-index: 200;
+}
+
+.itemInTheCart {
+    padding-bottom: 10px;
+    color: #282c3f;
+    font-weight: 600;
+    font-size: 20px
+}
+
+.itemInTheCartDescription {
+    color: #535665;
+    line-height: 20px;
+    font-size: 13px;
+    font-weight: 300;
+
+}
+
+.modalButtons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 30px;
+}
+
+.noButton {
+    display: flex;
+    cursor: pointer;
+    background-color: #fff;
+    border: 2px solid #60b246;
+    font-weight: 600;
+    color: #60b246;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    width: 216px;
+    height: 46px;
+}
+
+.yesButton {
+    display: flex;
+    cursor: pointer;
+    background-color: #60b246;
+    border: 2px solid #60b246;
+    font-weight: 600;
+    color: white;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-transform: uppercase;
+    width: 216px;
+    height: 46px;
+}

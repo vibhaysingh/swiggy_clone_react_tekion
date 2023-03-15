@@ -3,7 +3,7 @@ import styles from '../resturantDishes/ResturantsDishes.module.css';
 
 function OfferCard(props) {
 
-    const offers = props.offers;
+    const { offers } = props;
 
 
 

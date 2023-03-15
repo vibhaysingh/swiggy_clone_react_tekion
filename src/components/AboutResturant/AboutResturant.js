@@ -1,8 +1,6 @@
 import StarRateIcon from '@mui/icons-material/StarRate';
 import React from 'react';
 import styles from "../resturantDishes/ResturantsDishes.module.css";
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css'
 
 function AboutResturant(props) {
 
