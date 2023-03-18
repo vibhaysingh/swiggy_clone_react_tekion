@@ -5,10 +5,12 @@ import "./index.css";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import Cart from "./components/Cart/Cart";
+import ConfirmedOrder from "./components/ConfirmedOrder/ConfirmedOrder";
+
 
 
 function App() {
-
+ 
 
   return (
     <div>
@@ -19,6 +21,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/resturants/:id" element={<ResturantDishes />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/orderConfirmed" element={<ConfirmedOrder/>} />
         </Routes>
       </BrowserRouter>
 

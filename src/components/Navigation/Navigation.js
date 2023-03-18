@@ -1,9 +1,31 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
+import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 import Login from "../Login/Login";
 import Navbar from "../Navbar/Navbar";
 import Signup from "../Signup/Signup";
+import { cartActionsUI } from "../../Store/uiSlice";
 
 function Navigation() {
+
+
+    const location = useLocation();
+    const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        // Retrieve the URL path from the `location` object
+        const path = location.pathname;
+
+        // Update state depending on the URL path
+        if (path === '/orderConfirmed') {
+            dispatch(cartActionsUI.toggleNavbar(false));
+        }
+        else{
+            dispatch(cartActionsUI.toggleNavbar(true));
+        }
+    }, [location]);
+
     const [isLoginSidebarOpen, setIsLoginSidebarOpen] = useState(false);
     const [isSignupSidebarOpen, setIsSignupSidebarOpen] = useState(false);
     const handleLoginSidebarOpen = () => {

@@ -6,12 +6,13 @@ import swiggyLogo from "../../assets/Swiggy Logo.png";
 import styles from "./Navbar.module.css";
 
 export default function Navbar(props) {
-
+    const showNavbar = useSelector((state) => state.displayNavbar.showNavbar)
     const { handleLoginOpen, handleSignupOpen } = props;
     const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+
     return (
         <React.Fragment>
-            <div className={styles.navbar}>
+            <div className={styles.navbar} style={{visibility:showNavbar?'visible':'hidden'}}>
                 <div className={styles.swiggy_logo}>
                     <img src={swiggyLogo} alt="Swiggy-Logo"></img>
                 </div>

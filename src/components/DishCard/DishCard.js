@@ -9,18 +9,19 @@ import { cartActions } from '../../Store/cartSlice';
 import styles from "../resturantDishes/ResturantsDishes.module.css";
 
 function DishCard(props) {
+
+
     const resturantId = useParams().id;
     const resturantIdFromState = useSelector((state) => state.cart.resturantId);
     const cartItems = useSelector((state) => state.cart.items);
     const { dishInfo, hideborder, area, resturantName, resturantImageId, handleModalShow } = props;
-    const dishImageLink = dishInfo.cloudinaryImageId ? (`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/${dishInfo.cloudinaryImageId}`) : fallBackImage;
+    const dishImageLink = dishInfo.imageId ? (`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/${dishInfo.imageId}`) : fallBackImage;
     const dishPrice = Math.max(dishInfo.price ? dishInfo.price / 100 : 0, dishInfo.defaultPrice ? dishInfo.defaultPrice / 100 : 0);
     const isVeg = dishInfo.isVeg === 1;
     const dispatch = useDispatch();
-    const [isAddVisible, setisAddVisible] = useState(true);
-    // const [itemCount, setitemCount] = useState(0);
     const itemCount = cartItems?.find((item) => item.id === dishInfo.id)?.quantity;
     const [addAnimation, setaddAnimation] = useState(false);
+
 
 
     const addToCartHandler = (id, name, price) => {
@@ -38,19 +39,12 @@ function DishCard(props) {
     }
 
     const removeFromCartHandler = (foodId) => {
-
         dispatch(cartActions.removeItemFromCart(foodId));
-        if (itemCount === 1) {
-            setisAddVisible((prevState) => !prevState);
-        }
-     
-
     }
-    // itemCount && setisAddVisible(true);
-    console.log(itemCount);
+  
 
     const handleAddVisible = () => {
-        setisAddVisible((prevState) => !prevState)
+        // setisAddVisible((prevState) => !prevState)
     }
 
     const addAnimationHandler = () => {
@@ -59,6 +53,7 @@ function DishCard(props) {
             setaddAnimation((prevState) => !prevState);
         }, 1000)
     }
+
 
     return (
         <div
@@ -74,14 +69,16 @@ function DishCard(props) {
                     </div>
                     <p className={styles.dish_name}> {dishInfo.name}</p>
                     <p className={styles.dish_price}>₹ {dishPrice}</p>
-                    <p className={styles.dish_description}>{dishInfo.description.replace(/[\[\]]/g, "")}</p>
+                    <p className={styles.dish_description}>{dishInfo?.description?.replace(/[\[\]]/g, "")}</p>
                 </div>
             </div>
             <div className={styles.dish_card_right_content} >
                 <img src={dishImageLink} alt="dishImage" />
+                
                 <div
                     className={`${styles['add_button']} ${addAnimation ? styles['animation'] : ''}`}
-                    style={{ cursor: isAddVisible ? 'pointer' : 'default' }}
+                    style={{ cursor: !itemCount ? 'pointer' : 'default' }}
+
                     onClick={() => {
                        
                         (!resturantIdFromState || resturantId === resturantIdFromState) && !itemCount && handleAddVisible();

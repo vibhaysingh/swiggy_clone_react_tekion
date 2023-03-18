@@ -6,6 +6,7 @@ import CardSkeleton from '../CardLoader/CardSkeleton';
 import FoodCard from '../resturantCard/FoodCard';
 import styles from "./CardContainer.module.css";
 
+
 export default function CardContainer(props) {
   const [foodCards, setFoodCads] = useState([]);
   const [offset, setOffset] = useState(0);

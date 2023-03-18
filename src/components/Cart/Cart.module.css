@@ -1,12 +1,10 @@
 .cart_page {
-
-    padding: 110px 150px 0px 150px;
+    padding: 150px 150px 0px 150px;
     background-color: rgb(233, 236, 238);
     min-height: 100vh;
 }
 
 .cart_container {
-
     display: grid;
     grid-template-columns: 2fr 1fr;
 
@@ -14,10 +12,14 @@
 
 .cartItems_container {
     background-color: white;
+    position: relative;
+    height: 544px;
 }
 
 .cartItems_inner_container {
-    /* padding: 0 25px; */
+
+    height: 72%;
+
 }
 
 .resturantName_container {
@@ -36,7 +38,6 @@
 
 .resturantNam_right_container {
     margin-left: 15px;
-    /* background-color: yellow; */
 }
 
 .resturantName_image>img {
@@ -68,15 +69,211 @@
     top: 10px;
 }
 
+.cart_cards {
+    height: 100%;
+    overflow: auto;
+}
+
 .totalAmount_container {
     height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 25px;
-     box-shadow: rgba(0, 0, 0, 0.11) 0px -3.5px 6px -4px;
+    box-shadow: rgba(0, 0, 0, 0.11) 0px -3.5px 6px -4px;
     font-weight: 600;
     font-size: 14px;
+    /* background-color: yellow; */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 
 
+}
+
+.delivery_details {
+    width: 96%;
+}
+
+.accountPage {
+    position: relative;
+    padding: 20px 30px;
+    background-color: white;
+
+}
+
+.accountHeading {
+    font-weight: 600;
+    color: #282c3f;
+    font-size: large;
+}
+
+.accountDescription {
+    margin-top: 8px;
+    color: #7e808c;
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.accountImage {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    right: 35px;
+}
+
+.accountImage>img {
+    width: 100%;
+    height: 100%;
+}
+
+.loginSignupButtonContainer {
+
+    display: flex;
+    align-items: center;
+    padding: 10px 0px;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+.loginButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #60b246;
+    color: #60b246;
+    margin-right: 20px;
+    padding: 8px 35px 9px;
+    line-height: 1.3;
+    cursor: pointer;
+
+}
+
+.loginButton>p:nth-child(1) {
+    font-size: 12px;
+
+}
+
+.loginButton>p:nth-child(2) {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.signupButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #60b246;
+    color: white;
+    padding: 8px 45px 9px;
+    line-height: 1.3;
+    cursor: pointer;
+    background-color: #60b246;
+
+}
+
+.signupButton>p:nth-child(1) {
+    font-size: 12px;
+
+}
+
+.signupButton>p:nth-child(2) {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.deliveryAdressInputDetails {
+    margin-top: 20px;
+    background-color: white;
+    padding: 10px 20px;
+    padding-bottom: 30px;
+}
+
+.addressHeading {
+    font-weight: 600;
+    color: #282c3f;
+    font-size: large;
+}
+
+.inputAdress {
+    margin-top: 20px;
+    height: 90px;
+    background-color: red;
+}
+
+.inputAdress>textarea {
+    display: block;
+    width: 100%;
+    height: 100%;
+    resize: none;
+    outline: none;
+    border: 0.5px solid rgba(128, 128, 128, 0.215);
+    padding: 7px;
+    font-size: 15px;
+}
+
+.paymentContainer {
+    margin-top: 20px;
+    background-color: white;
+    padding: 10px 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.paymentHeading {
+    font-weight: 600;
+    color: #282c3f;
+    font-size: large;
+}
+
+.totalAmount {
+    margin-top: 6px;
+    color: #7e808c;
+    font-weight: 300;
+    font-size: 16px;
+    padding: 20px 10x;
+}
+
+.paymentButton {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #60b246;
+    color: white;
+    cursor: pointer;
+    background-color: #60b246;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: bold;
+    width: 60%;
+    padding: 14px;
+    align-self: center;
+    position: relative;
+
+}
+
+.paymentButton:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.paymentButton::after {
+    content: "";
+    background-color: #24720c3c;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transition: width 1.5s linear, opacity 0.5s ease 1.5s;
+}
+.paymentButton:active:after {
+    width: 0%;
+    opacity: 1;
+    transition: 0s
 }

@@ -1,8 +1,20 @@
-import React, {useState} from 'react'
+import React, {useState,useReducer} from 'react'
 import sidebar_food from "../../assets/sidebar_food.png"
 import styles from "./Signup.module.css"
+import { emailReducer } from './ Helper/Helper'
 
 function Signup(props) {
+
+
+
+    const handleSignup = ()=>{
+
+    }
+
+    const [emailState, dispatchEmail] = useReducer(emailReducer);
+
+
+
     return (
         <div className={`${styles.sidenav} ${props.isOpen ? styles['drawer_open'] : ''}`}>
             <div className={styles.cross} onClick={props.isClose}></div>
@@ -30,7 +42,7 @@ function Signup(props) {
             <div className={styles.signupbutton}>
                 <button>CONTINUE</button>
             </div>
-            <div className={styles.signup_terms}>
+            <div className={styles.signup_terms} onClick={handleSignup}>
                 By creating an account, I accept the <strong>Terms &amp; Conditions</strong> &amp;<strong>Privacy Policy</strong>
             </div>
 

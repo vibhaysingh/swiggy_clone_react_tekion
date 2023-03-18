@@ -1,0 +1,89 @@
+.confirmedOrderOuterContainer {
+    padding: 20px 350px;
+    background-color: rgb(233, 236, 238);
+    height: 100vh;
+    position: relative;
+
+}
+
+.confirmedOrderContainer {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    max-height: 80%;
+    overflow: auto;
+    height: 80%;
+    position: relative;
+}
+
+.paymentSuccesfull {
+    color: #270;
+    background-color: #DFF2BF;
+    padding: 15px;
+    border: 1px solid #c7ee85;
+    text-align: center;
+
+}
+
+
+.orderSummary {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.orderDetailsContainer {
+    margin-top: 20px;
+}
+
+.orderDetailsContainer>div:last-child {
+
+    border-bottom: 0.5px solid rgba(128, 128, 128, 0.404);
+}
+
+.itemInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    border: 0.5px solid rgba(128, 128, 128, 0.404);
+    border-bottom: none;
+    padding: 0 30px;
+    background-color: rgba(244, 244, 244, 0.347);
+    margin-top: 5px;
+
+}
+
+.totalPaidAmountContainer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    padding: 0 30px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgba(128, 128, 128, 0.155);
+    box-shadow: rgba(0, 0, 0, 0.067) 0px 5px 15px 0px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.goToHomebutton {
+
+    background-color: rgb(252, 128, 24);
+    color: white;
+    text-transform: uppercase;
+    width: 380px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 15px 30px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 14%;
+    position: absolute;
+    bottom: 15%;
+
+}

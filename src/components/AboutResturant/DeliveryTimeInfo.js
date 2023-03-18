@@ -8,11 +8,13 @@ function DeliveryTimeInfo(props) {
 
     const { costForTwoMsg, deliveryTime } = props;
 
+    
+
     return (
         costForTwoMsg &&
         (<div className={styles.time_and_cost}>
             <span > <TimerIcon /> </span>
-            <div className={styles.time}>{deliveryTime}</div>
+            <div className={styles.time}>{deliveryTime} {" MINS"}</div>
             <span><RupeeIcon /></span>
             <div className={styles.cost}>{costForTwoMsg}</div>
         </div>)

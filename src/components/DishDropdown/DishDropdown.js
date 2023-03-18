@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
+import Modal from "../Cart/Modal/Modal";
 import DishCard from '../DishCard/DishCard';
-import Modal from "../Cart/Modal/Modal"
 import styles from "../resturantDishes/ResturantsDishes.module.css";
 
 function DishDropdown(props) {
-    const { menu, dropdownHeading, resturantName, area, resturantImageId } = props;
+
+    const { dropdownHeading, resturantName, area, resturantImageId } = props;
     const [clickedDropdown, setclickedDropdown] = useState([]);
     const handleclickedDropdown = (index) => {
         !clickedDropdown.includes(index) ? setclickedDropdown(() => [...clickedDropdown, index]) : setclickedDropdown(() => {
@@ -22,40 +24,94 @@ function DishDropdown(props) {
         navigate("/cart");
     }
     const [showModal, setShowModal] = useState(false);
+
+
+    let dropdownHeadingAndDishes = [];
+
+    dropdownHeading.forEach((heading) => {
+
+        let headingCard = heading.card.card;
+        if (headingCard.title) {
+            let dropdownHeadingAndDish = {};
+            dropdownHeadingAndDish.title = headingCard.title;
+            dropdownHeadingAndDish.dishInfo = [];
+            if (headingCard.categories) {
+
+                headingCard.categories.forEach((category) => {
+
+                    if (category.itemCards) {
+
+                        category.itemCards.forEach((item) => {
+                            if (item.card.info) {
+                                dropdownHeadingAndDish.dishInfo.push(item.card.info);
+                            }
+                        })
+                    }
+                })
+            }
+            else if (headingCard.itemCards) {
+
+                headingCard.itemCards.forEach((item) => {
+
+                    if (item.card.info) {
+                        dropdownHeadingAndDish.dishInfo.push(item.card.info);
+                    }
+                })
+            }
+            dropdownHeadingAndDishes.push(dropdownHeadingAndDish);
+
+        }
+    })
+
+    console.log(dropdownHeadingAndDishes);
+
+
+
     return (
         <div className={styles.dishes_dropdown_container}>
-            {dropdownHeading && dropdownHeading.map((heading, index) => {
-                return (
-                    heading.entities?.length ? (
-                        <div className={styles.dish_dropdown} key={index}>
-                            <div
-                                className={styles.dish_heading}
 
-                                onClick={() => { handleclickedDropdown(index) }}
-                            >
-                                <p>{`${heading.name} ${heading.entities.length ? `(${heading.entities.length})` : ''}`}</p>
-                                <span  >{clickedDropdown.includes(index) ? <IoIosArrowUp size={'25px'} /> : <IoIosArrowDown size={'25px'} />}</span>
-                            </div >
-                            {
-                                clickedDropdown.includes(index) && heading.entities && heading.entities.map((dish, index) => {
-                                    return (
-                                        <DishCard 
-                                        dishInfo={menu && menu[dish.id]} 
-                                        key={index} 
-                                        hideborder={index === heading.entities.length - 1} resturantName={resturantName} 
-                                        area={area} 
-                                        resturantImageId={resturantImageId} 
-                                        handleModalShow={setShowModal}
-                                        />
-                                    )
-                                })
-                            }
-                        </div>) : (<></>)
-                )
-            })}
+
+            {
+                dropdownHeadingAndDishes && dropdownHeadingAndDishes.map((heading, index) => {
+
+
+                    return (
+                        
+                            <div className={styles.dish_dropdown}>
+                                <div
+                                    className={styles.dish_heading}
+                                    onClick={() => { handleclickedDropdown(index) }}
+
+                                >
+                                    <p >{`${heading.title} ${"(" + heading.dishInfo.length + ")"}`}
+                                    </p>
+                                    <span key={uuidv4()}>{clickedDropdown.includes(index) ? <IoIosArrowUp size={'25px'} /> : <IoIosArrowDown size={'25px'} />}</span>
+                                </div >
+
+                                {
+
+
+                                    clickedDropdown.includes(index) && heading.dishInfo.map((dish, index) => {
+                                        return (
+                                            <DishCard
+                                                dishInfo={dish}
+                                                key={index}
+                                                hideborder={index === heading.dishInfo.length - 1} resturantName={resturantName}
+                                                area={area}
+                                                resturantImageId={resturantImageId}
+                                                handleModalShow={setShowModal}
+                                            />
+                                        )
+                                    })
+                                }
+                            </div>)
+            })
+            }
+
+
             <div className={styles.cart_popup}
                 onClick={handleCartPopup}
-                style={{bottom:totalQuantity?'0':'-50px'}}
+                style={{ bottom: totalQuantity ? '0' : '-50px' }}
             >
                 <div className={styles.totalCartItems_and_totalCartPrice}>
                     <div>{totalQuantity}{" "}Item</div>
@@ -69,7 +125,7 @@ function DishDropdown(props) {
                     </div>
                 </div>
             </div>
-           {<Modal handleModalShow={setShowModal} showModal={showModal}/>}
+            {<Modal handleModalShow={setShowModal} showModal={showModal} />}
         </div>
     )
 }

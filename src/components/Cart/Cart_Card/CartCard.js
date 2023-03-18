@@ -23,7 +23,8 @@ function CartCard(props) {
     return (
 
         <div className={styles.cartCard_container}>
-            <div className={styles.veg_nonVeg}> <VegIcons veg={true} /></div>
+            <div className={styles.veg_nonVeg}> <VegIcons veg={true} />
+            </div>
             <div className={styles.cartCard_ItemName}>
                 {dishName}
             </div>
@@ -34,12 +35,12 @@ function CartCard(props) {
                     onClick={() => removeFromCartHandler(id)}
                 ><FiMinus size={15} /></span>
                 <span className={styles.cartCard_ItemCount}> {quantity}</span>
-                <span className={styles.cartCard_decreaseItemCount}
+                <span className={styles.cartCard_increaseItemCount}
                     onClick={() => addToCartHandler(id, dishName, price)}
                     style={{ color: 'green' }}
                 ><FiPlus size={15} /></span>
             </div>
-            <div className={styles.cartCard_price}>{price} </div>
+            <div className={styles.cartCard_price}>₹{price} </div>
         </div>
     )
 }

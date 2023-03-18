@@ -131,7 +131,7 @@
 
 .offer_icon {
     width: 20px;
-    height: 20px;
+    height: 18px;
     display: inline-block;
 }
 
@@ -219,7 +219,6 @@
 .dish_card_right_content>img {
     width: 118px;
     height: 96px;
-    cursor: pointer;
     border-radius: 6px;
 
 }
