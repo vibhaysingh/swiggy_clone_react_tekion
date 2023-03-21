@@ -1,4 +1,4 @@
-.skeleton_container {
+.skeletonContainer {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -9,7 +9,7 @@
     margin-top: 1%;
 }
 
-.cards_4 {
+.fourCards {
     padding: 0 8%;
     position: relative;
     bottom: 55px;

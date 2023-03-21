@@ -5,16 +5,19 @@ import { cartActionsUI } from "../../Store/uiSlice";
 import Login from "../Login/Login";
 import Navbar from "../Navbar/Navbar";
 import Signup from "../Signup/Signup";
-
+import {addFixedBody} from "../../utils/fixedBody.helper";
+import {removeFixedBody} from "../../utils/fixedBody.helper";
 function Navigation() {
     const location = useLocation();
     const dispatch = useDispatch();
     const isLoginSidebarOpen = useSelector((state) => state.loginSideBar).isLoginSidebarOpen;
     const isSignupSidebarOpen = useSelector((state) => state.signupSideBar).isSignupSidebarOpen;
+    const homePageOverlay = "overlay";
+    const orderConfirmedPath="/orderConfirmed";
 
     useEffect(() => {
-        const path = location.pathname;
-        if (path === '/orderConfirmed') {
+        const currentPath = location.pathname;
+        if (currentPath === orderConfirmedPath) {
             dispatch(cartActionsUI.toggleNavbar(false));
         }
         else {
@@ -23,24 +26,21 @@ function Navigation() {
     }, [location]);
 
     useEffect(() => {
-      
         if(isLoginSidebarOpen||isSignupSidebarOpen){
-            document.body.classList.add("body-fixed");
+            addFixedBody();
         }
         else{
-            document.body.classList.remove("body-fixed");
+            removeFixedBody();
         }
-    
     }, [isLoginSidebarOpen, isSignupSidebarOpen])
     
     return (
         <Fragment>
-            <div className={(isLoginSidebarOpen || isSignupSidebarOpen) ? "overlay" : ''}></div>
+            <div className={(isLoginSidebarOpen || isSignupSidebarOpen) ? homePageOverlay : ''}></div>
             <Navbar />
             <Login />
             <Signup />
         </Fragment>
     )
 }
-
 export default Navigation
