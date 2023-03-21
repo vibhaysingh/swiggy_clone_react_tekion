@@ -12,7 +12,7 @@ function CartCard(props) {
         const newItem = {
             id: id,
             name: name,
-            price: price,
+            price: +price,
         };
         dispatch(cartActions.addItemToCart(newItem));
     }
@@ -40,7 +40,7 @@ function CartCard(props) {
                     style={{ color: 'green' }}
                 ><FiPlus size={15} /></span>
             </div>
-            <div className={styles.cartCard_price}>₹{price} </div>
+            <div className={styles.cartCard_price}>₹{price * quantity} </div>
         </div>
     )
 }

@@ -63,7 +63,6 @@ function DishDropdown(props) {
         }
     })
 
-    console.log(dropdownHeadingAndDishes);
 
 
 
@@ -76,36 +75,36 @@ function DishDropdown(props) {
 
 
                     return (
-                        
-                            <div className={styles.dish_dropdown}>
-                                <div
-                                    className={styles.dish_heading}
-                                    onClick={() => { handleclickedDropdown(index) }}
+                        heading.dishInfo.length>0 &&
+                        <div className={styles.dish_dropdown}>
+                            <div
+                                className={styles.dish_heading}
+                                onClick={() => { handleclickedDropdown(index) }}
 
-                                >
-                                    <p >{`${heading.title} ${"(" + heading.dishInfo.length + ")"}`}
-                                    </p>
-                                    <span key={uuidv4()}>{clickedDropdown.includes(index) ? <IoIosArrowUp size={'25px'} /> : <IoIosArrowDown size={'25px'} />}</span>
-                                </div >
+                            >
+                                <p >{`${heading.title} ${"(" + heading.dishInfo.length + ")"}`}
+                                </p>
+                                <span key={uuidv4()}>{clickedDropdown.includes(index) ? <IoIosArrowUp size={'25px'} /> : <IoIosArrowDown size={'25px'} />}</span>
+                            </div >
 
-                                {
+                            {
 
 
-                                    clickedDropdown.includes(index) && heading.dishInfo.map((dish, index) => {
-                                        return (
-                                            <DishCard
-                                                dishInfo={dish}
-                                                key={index}
-                                                hideborder={index === heading.dishInfo.length - 1} resturantName={resturantName}
-                                                area={area}
-                                                resturantImageId={resturantImageId}
-                                                handleModalShow={setShowModal}
-                                            />
-                                        )
-                                    })
-                                }
-                            </div>)
-            })
+                                clickedDropdown.includes(index) && heading.dishInfo.map((dish, index) => {
+                                    return (
+                                        <DishCard
+                                            dishInfo={dish}
+                                            key={index}
+                                            hideborder={index === heading.dishInfo.length - 1} resturantName={resturantName}
+                                            area={area}
+                                            resturantImageId={resturantImageId}
+                                            handleModalShow={setShowModal}
+                                        />
+                                    )
+                                })
+                            }
+                        </div>)
+                })
             }
 
 

@@ -23,7 +23,6 @@ function ResturantDishes() {
       const info = data?.data?.cards[0]?.card?.card?.info;
       const dropdownHeading = data?.data?.cards[2]?.groupedCard?.cardGroupMap.REGULAR.cards
 
-      console.log(offers)
 
       setdishesInfo(() => {
         return {

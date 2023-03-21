@@ -13,6 +13,7 @@
     overflow: auto;
     height: 80%;
     position: relative;
+
 }
 
 .paymentSuccesfull {
@@ -30,10 +31,13 @@
     font-weight: bold;
     text-align: center;
     margin-top: 20px;
+
 }
 
 .orderDetailsContainer {
     margin-top: 20px;
+   
+
 }
 
 .orderDetailsContainer>div:last-child {
@@ -63,11 +67,13 @@
     padding: 0 30px;
     font-size: 18px;
     font-weight: bold;
-    background-color: rgba(128, 128, 128, 0.155);
+    background-color: rgb(128, 128, 128);
     box-shadow: rgba(0, 0, 0, 0.067) 0px 5px 15px 0px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+    position: fixed;
+    bottom: 21.4%;
+    width: 53.7%;
+    opacity: 1;
+    color: white;
 }
 
 .goToHomebutton {

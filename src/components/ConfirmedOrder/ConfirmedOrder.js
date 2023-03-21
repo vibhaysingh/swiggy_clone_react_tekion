@@ -9,14 +9,10 @@ function ConfirmedOrder() {
 
   const location = useLocation();
   const { cartItems, totalCartprice } = location.state;
-
-  console.log(location.state)
-
-
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setIsVisible(false);
-    }, 1500);
+    }, 3500);
 
     return () => {
       clearTimeout(timeoutId);
@@ -46,7 +42,7 @@ function ConfirmedOrder() {
           {cartItems.map((item, index) => {
             return (<div className={styles.itemInfo}>
               <div className={styles.itemName}> {index + 1}. {item.name}</div>
-              <div className={styles.itemPrice}> ₹ {item.price}</div>
+              <div className={styles.itemPrice}> ₹ {item.price*item.quantity}</div>
             </div>)
           })}
         </div>

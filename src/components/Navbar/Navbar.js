@@ -1,18 +1,43 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CartLogo from '../../assets/CartLogo';
 import swiggyLogo from "../../assets/Swiggy Logo.png";
+import { useAuth } from '../../Store/Context/AuthContext';
+import { loginSidebarActions } from "../../Store/loginSidebarSlice";
+import { signupSidebarActions } from "../../Store/signupSidebarSlice";
 import styles from "./Navbar.module.css";
 
 export default function Navbar(props) {
     const showNavbar = useSelector((state) => state.displayNavbar.showNavbar)
-    const { handleLoginOpen, handleSignupOpen } = props;
     const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+    const { currentUser, setCurrentUser } = useAuth();
+    const [isGettingLoggedout, setisGettingLoggedout] = useState(false);
+
+    const handleLogout = () => {
+
+        setisGettingLoggedout(true);
+        setTimeout(() => {
+
+            setCurrentUser(null);
+            localStorage.removeItem("currentUser");
+            setisGettingLoggedout(false);
+        }, 1500);
+
+    }
+    const dispatch = useDispatch();
+    const handleLoginSidebarOpen = () => {
+        dispatch(loginSidebarActions.toggleLoginSidebarOpen());
+    }
+    const handleSignupSidebarOpen = () => {
+
+        dispatch(signupSidebarActions.toggleSignupSidebarOpen());
+    }
+
 
     return (
         <React.Fragment>
-            <div className={styles.navbar} style={{visibility:showNavbar?'visible':'hidden'}}>
+            <div className={styles.navbar} style={{ visibility: showNavbar ? 'visible' : 'hidden' }}>
                 <div className={styles.swiggy_logo}>
                     <img src={swiggyLogo} alt="Swiggy-Logo"></img>
                 </div>
@@ -24,12 +49,17 @@ export default function Navbar(props) {
                                 <CartLogo />
                                 <span className={styles.cart_quantity}>{totalQuantity}</span>
                             </div>
-                            
+
                             <div className={styles.cart_text}>Cart</div>
                         </Link>
                     </div>
-                    <button className={styles.login} onClick={handleLoginOpen}>Login</button>
-                    <button className={styles.signup} onClick={handleSignupOpen}>Signup</button>
+                    {!currentUser && <button className={styles.login} onClick={handleLoginSidebarOpen}>Login</button>}
+
+                    {currentUser && <button className={styles.login} >{currentUser.userName}</button>}
+
+                    {!currentUser && <button className={styles.signup} onClick={handleSignupSidebarOpen}>Signup</button>}
+
+                    {currentUser && <button className={styles.signup} onClick={handleLogout}>{isGettingLoggedout ? 'Logging Out...' : 'Logout'}</button>}
 
                 </div>
             </div>

@@ -200,7 +200,6 @@
 .inputAdress {
     margin-top: 20px;
     height: 90px;
-    background-color: red;
 }
 
 .inputAdress>textarea {
@@ -221,6 +220,7 @@
     padding-bottom: 20px;
     display: flex;
     flex-direction: column;
+    height: 155px;
 }
 
 .paymentHeading {
@@ -253,6 +253,7 @@
     padding: 14px;
     align-self: center;
     position: relative;
+   
 
 }
 
@@ -272,8 +273,15 @@
     opacity: 0;
     transition: width 1.5s linear, opacity 0.5s ease 1.5s;
 }
+
 .paymentButton:active:after {
     width: 0%;
     opacity: 1;
     transition: 0s
+}
+
+.loggedInUser {
+    margin-top: 10px;
+    font-weight: bold;
+    height: 100px;
 }
