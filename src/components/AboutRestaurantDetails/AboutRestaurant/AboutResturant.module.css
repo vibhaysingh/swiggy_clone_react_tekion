@@ -1,0 +1,50 @@
+.restaurantInfoContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed gray;
+    padding-bottom: 13px;
+}
+
+.restaurantName {
+    font-size: 20px;
+    font-weight: 550;
+    color: #282c3f;
+    margin-bottom: 8px;
+    text-transform: capitalize;
+    line-height: 1.2;
+}
+
+.resturantCuisine,
+.resturantLocation {
+    font-size: 13px;
+    color: #7e808c;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    font-weight: 300;
+}
+.restaurantRatingContainer {
+    border: 1px solid #e9e9eb;
+    box-shadow: 0 1px 5px #f9f9f9;
+    border-radius: 6px;
+    padding: 10px 5px 10px 5px;
+}
+.rating {
+    color: #3d9b6d;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e9e9eb;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+.ratingCount {
+    font-size: 10px;
+    color: #8b8d97;
+    font-weight: 549;
+    padding-top: 5px;
+}
