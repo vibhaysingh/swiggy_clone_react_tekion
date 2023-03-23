@@ -1,32 +1,29 @@
-import React from 'react';
-import styles from '../resturantDishes/ResturantsDishes.module.css';
-
+import { IMG_CDN_URL } from "../../constants/constant";
+import styles from "./OfferCard.module.css";
 function OfferCard(props) {
     const { offers } = props;
+
     return (offers &&
-        (<div className={styles.offers_container}>
+        <div className={styles.offersContainer}>
             {offers && offers.map((offer, index) => {
-
-                let offerLink = `https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_28,h_28/${offer?.info?.offerLogo}`
-
+                const offerLink = `${IMG_CDN_URL}${offer?.info?.offerLogo}`;
                 return (
-                    <div className={styles.offer_container} key={index}>
-                        <div className={styles.offer_heading}>
-                            <span className={styles.offer_icon}>
+                    <div className={styles.offerContainer} key={index}>
+                        <div className={styles.offerHeading}>
+                            <span className={styles.offerIcon}>
                                 <img src={offerLink} alt="Offer" />
                             </span>
-                            <span className={styles.offer_description}>
+                            <span className={styles.offerDescription}>
                                 {offer.info.header}
                             </span>
                         </div>
-                        <div className={styles.offer_code}>
+                        <div className={styles.offerCode}>
                             {`  ${offer.info?.couponCode} ${offer.info?.description ? ' |' : ''} ${offer.info?.description}`}
                         </div>
                     </div>
                 )
-            }
-            )}
-        </div>)
+            })}
+        </div>
     )
 }
 

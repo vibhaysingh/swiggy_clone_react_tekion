@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import cartSlice from './cartSlice';
-import loginSidebarSlice from "./loginSidebarSlice";
-import signupSidebarSlice from "./signupSidebarSlice";
-import uiSlice from './uiSlice';
+import cartSlice from '../slices/cartSlice/cartSlice';
+import loginSidebarSlice from "../slices/authSlice/loginSidebarSlice";
+import signupSidebarSlice from "../slices/authSlice/signupSidebarSlice";
+import toggleNavbarSlice from '../slices/toggleNavbarSlice/toggleNavbarSlice';
 
 export const store = configureStore({
     reducer: {
         cart: cartSlice.reducer,
-        displayNavbar: uiSlice.reducer,
+        displayNavbar: toggleNavbarSlice.reducer,
         loginSideBar: loginSidebarSlice.reducer,
         signupSideBar: signupSidebarSlice.reducer
     },

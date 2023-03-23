@@ -1,0 +1,2 @@
+export const filters = ["RELEVANCE","DELIVERY_TIME","RATING","COST_FOR_TWO","COST_FOR_TWO_H2L"];
+export const filterDisplayName = ['Relevance','Delivery Time','Rating','Cost: Low To High','Cost: High To Low'];

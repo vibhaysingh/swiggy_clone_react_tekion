@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CartLogo from '../../assets/CartLogo';
-import swiggyLogo from "../../assets/Swiggy Logo.png";
-import { useAuth } from '../../Store/Context/AuthContext';
-import { loginSidebarActions } from "../../Store/loginSidebarSlice";
-import { signupSidebarActions } from "../../Store/signupSidebarSlice";
+import swiggyLogo from "../../assets/images/Swiggy Logo.png";
+import { useAuth } from '../../store/Context/AuthContext/AuthContext';
+import { loginSidebarActions } from "../../store/Toolkit/slices/authSlice/loginSidebarSlice";
+import { signupSidebarActions } from "../../store/Toolkit/slices/authSlice/signupSidebarSlice";
 import styles from "./Navbar.module.css";
 
 export default function Navbar(props) {

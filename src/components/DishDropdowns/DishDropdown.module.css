@@ -1,0 +1,67 @@
+.dishDropdown {
+    margin-top: 16px;
+    padding-bottom: 18px;
+    border-bottom: 16px solid #f1f1f6;
+}
+
+.dishHeading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dishHeading>p {
+    color: #282c3f;
+    font-weight: 800;
+    font-size: 19px;
+}
+
+.cartPopup {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(95, 178, 7);
+    padding: 15px 10px;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    position: fixed;
+    bottom: 0px;
+    width: 50%;
+    transition: all 0.5s ease-in-out;
+}
+
+.totalCartItemsAndTotalCartPrice {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.totalCartItemsAndTotalCartPrice>div {
+    margin-right: 7px;
+}
+
+.viewCart {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.viewCart>div:nth-child(2) {
+    width: 14px;
+    height: 14px;
+    margin-left: 7px;
+}
+
+.viewCart>div:nth-child(2)>img {
+    width: 100%;
+    height: 100%;
+}
+
+.viewCart>div:nth-child(1) {
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
+}

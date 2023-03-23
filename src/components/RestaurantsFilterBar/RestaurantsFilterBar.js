@@ -1,34 +1,30 @@
 import React, { useState } from 'react';
-import styles from "./FoodNavbar.module.css";
-
-
-function FoodNavbar(props) {
+import {filters,filterDisplayName} from "./restaurantsFilterBar.helper";
+import styles from "./RestaurantsFilterBar.module.css";
+function RestaurantsFilterBar(props) {
     const [clickedIndex, setClickedIndex] = useState(0);
-
     function handleClick(index, filter) {
         setClickedIndex(index);
         props.handlefilter(filter);
     }
 
     return (
-        <div className={styles.foodnavbar_container}>
-            <p className={styles.resturant_count}>1296 resturants</p>
-            <div className={styles.various_filters}>
-                <p className={clickedIndex === 0 ? styles['clicked'] : ''} onClick={() => handleClick(0, 'RELEVANCE')}> Relevance</p>
-                <p className={clickedIndex === 1 ? styles['clicked'] : ''} onClick={() => handleClick(1,'DELIVERY_TIME')}> Delivery Time</p>
-                <p className={clickedIndex === 2 ? styles['clicked'] : ''} onClick={() => handleClick(2,'RATING')}>
-                    Rating</p>
-                <p className={clickedIndex === 3 ? styles['clicked'] : ''} onClick={() => handleClick(3,'COST_FOR_TWO')}>
-                    Cost: Low To High</p>
-                <p className={clickedIndex === 4 ? styles['clicked'] : ''} onClick={() => handleClick(4,'COST_FOR_TWO_H2L')}>
-                    Cost: High To Low</p>
-                {/* <p className={styles.filters}>
-                    Filters 
-                </p>
-                <span><TuneOutlinedIcon fontSize='small' color='warning' /></span> */}
+        <div className={styles.restaurantFilterbarContainer}>
+            <p className={styles.restaurantTotalCount}>1296 resturants</p>
+            <div className={styles.filterButtons}>
+                {filters.map((filter,index)=>{
+                   return(
+                       <p
+                           className={clickedIndex === index ? styles.clicked : ''}
+                           onClick={() => handleClick(index, filter)}
+                           key={index}
+                       >
+                           {filterDisplayName[index]}
+                       </p>
+                   )
+                })}
             </div>
         </div>
     )
 }
-
-export default FoodNavbar
+export default RestaurantsFilterBar

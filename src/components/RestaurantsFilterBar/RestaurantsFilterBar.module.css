@@ -1,23 +1,22 @@
- .foodnavbar_container {
+ .restaurantFilterbarContainer {
      display: flex;
      align-items: flex-end;
-    width: 1250px;
-     /* max-width: 1235px; */
      padding-bottom: 5px;
      margin: 0 auto;
      justify-content: space-between;
      height: 72px;
      border-bottom: 1px solid rgba(128, 128, 128, 0.412);
+     margin: 0 135px;
  }
 
- .various_filters {
+ .filterButtons {
      display: flex;
      justify-content: space-around;
      width: 65%;
      align-items: center;
  }
 
- .various_filters>p {
+ .filterButtons>p {
      font-size: 16px;
      font-weight: 300;
      text-transform: capitalize;
@@ -26,32 +25,32 @@
      cursor: pointer;
  }
 
- .various_filters>span {
+ .filterButtons>span {
      cursor: pointer;
  }
 
- .resturant_count {
+ .restaurantTotalCount {
      font-weight: 600;
      font-size: 28px;
 
  }
 
- .various_filters .filters {
+ .filterButtons .filters {
      font-weight: 500;
      color: #3d4152;
  }
 
- .various_filters .filters:hover {
+ .filterButtons .filters:hover {
      color: #FC8018;
  }
 
- .various_filters span {
+ .filterButtons span {
      color: #FC8018;
      position: relative;
      top: 2.15px;
  }
 
- .various_filters p.clicked::after {
+ .filterButtons p.clicked::after {
      content: '';
      display: block;
      position: relative;

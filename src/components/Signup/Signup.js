@@ -1,9 +1,9 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import sidebar_food from "../../assets/sidebar_food.png";
-import { useAuth } from '../../Store/Context/AuthContext';
-import { loginSidebarActions } from "../../Store/loginSidebarSlice";
-import { signupSidebarActions } from "../../Store/signupSidebarSlice";
+import sidebar_food from "../../assets/images/sidebar_food.png";
+import { useAuth } from '../../store/Context/AuthContext/AuthContext';
+import { loginSidebarActions } from "../../store/Toolkit/slices/authSlice/loginSidebarSlice";
+import { signupSidebarActions } from "../../store/Toolkit/slices/authSlice/signupSidebarSlice";
 import { checkNumberOnlyRegex, intialSignupState, signupReducer } from './ Helper/Helper';
 import styles from "./Signup.module.css";
 

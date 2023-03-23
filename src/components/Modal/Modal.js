@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { cartActions } from "../../../store/cartSlice";
+import { cartActions } from "../../store/Toolkit/slices/cartSlice/cartSlice";
 import Backdrop from '../Backdrop/Backdrop';
 import styles from "./Modal.module.css";
 

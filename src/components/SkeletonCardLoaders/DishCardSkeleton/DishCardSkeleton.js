@@ -1,8 +1,8 @@
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import styles from './DishSkeleton.module.css';
-function DishSkeleton() {
+import styles from './DishCardSkeleton.module.css';
+function DishCardSkeleton() {
     return (
         <div className={styles.dishCardSkeleton_container}>
             <div className={styles.resturantDetails}>
@@ -20,4 +20,4 @@ function DishSkeleton() {
     )
 }
 
-export default DishSkeleton
+export default DishCardSkeleton

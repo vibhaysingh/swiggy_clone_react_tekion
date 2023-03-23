@@ -1,13 +1,13 @@
 import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import { cartActionsUI } from "../../Store/uiSlice";
+import { toggleNavbarActions } from "../../store/Toolkit/slices/toggleNavbarSlice/toggleNavbarSlice";
 import Login from "../Login/Login";
 import Navbar from "../Navbar/Navbar";
 import Signup from "../Signup/Signup";
 import {addFixedBody} from "../../utils/fixedBody.helper";
 import {removeFixedBody} from "../../utils/fixedBody.helper";
-function Navigation() {
+function AuthNavbar() {
     const location = useLocation();
     const dispatch = useDispatch();
     const isLoginSidebarOpen = useSelector((state) => state.loginSideBar).isLoginSidebarOpen;
@@ -18,10 +18,10 @@ function Navigation() {
     useEffect(() => {
         const currentPath = location.pathname;
         if (currentPath === orderConfirmedPath) {
-            dispatch(cartActionsUI.toggleNavbar(false));
+            dispatch(toggleNavbarActions.toggleNavbar(false));
         }
         else {
-            dispatch(cartActionsUI.toggleNavbar(true));
+            dispatch(toggleNavbarActions.toggleNavbar(true));
         }
     }, [location]);
 
@@ -43,4 +43,4 @@ function Navigation() {
         </Fragment>
     )
 }
-export default Navigation
+export default AuthNavbar

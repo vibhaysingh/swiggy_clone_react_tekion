@@ -1,9 +1,9 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import sidebar_image from "../../assets/sidebar_food.png";
-import { useAuth } from '../../Store/Context/AuthContext';
-import { loginSidebarActions } from "../../Store/loginSidebarSlice";
-import { signupSidebarActions } from "../../Store/signupSidebarSlice";
+import sidebar_image from "../../assets/images/sidebar_food.png";
+import { useAuth } from '../../store/Context/AuthContext/AuthContext';
+import { loginSidebarActions } from "../../store/Toolkit/slices/authSlice/loginSidebarSlice";
+import { signupSidebarActions } from "../../store/Toolkit/slices/authSlice/signupSidebarSlice";
 import { checkNumberOnlyRegex, intialLoginState, loginReducer } from "./Helper/Helper";
 import styles from "./Login.module.css";
 
@@ -14,7 +14,7 @@ function Login(props) {
 
 
     const [loginState, dispatchLoginState] = useReducer(loginReducer, intialLoginState);
-    const { currentUser, setCurrentUser } = useAuth();
+    const {  setCurrentUser } = useAuth();
     const [loading, setLoading] = useState(false);
     const [isUserFound, setIsUserFound] = useState(true);
     const isLoginSidebarOpen = useSelector((state) => state.loginSideBar).isLoginSidebarOpen;

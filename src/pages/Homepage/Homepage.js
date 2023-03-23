@@ -1,15 +1,16 @@
 import React, { Fragment, useState } from 'react';
 import Caraousel from "../../components/Caraousel/Caraousel";
-import CardContainer from "../../components/Allresturants/CardContainer";
+import AllRestaurantsContainer from "../../components/AllRestaurantsContainer/AllRestaurantsContainer";
 import RestaurantsFilterBar from "../../components/RestaurantsFilterBar/RestaurantsFilterBar";
-function Home() {
+function Homepage() {
     const [filter, setFilter] = useState('RELEVANCE');
+
     return (
         <Fragment>
             <Caraousel />
             <RestaurantsFilterBar handlefilter={setFilter} />
-            <CardContainer filter={filter} />
+            <AllRestaurantsContainer filter={filter} />
         </Fragment>
     )
 }
-export default Home
+export default Homepage

@@ -1,6 +1,6 @@
 import React from 'react';
 import Skeleton from 'react-loading-skeleton';
-import styles from "./restaurantCardSkeleton.module.css"
+import styles from "./RestaurantCardSkeleton.module.css"
 import 'react-loading-skeleton/dist/skeleton.css'
 function RestaurantCardSkeleton({ count }) {
     const restaurantsCards = [];

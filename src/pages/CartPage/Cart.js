@@ -2,18 +2,18 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import foodImageLink from "../../assets/images/sidebar_food.png";
-import { cartActions } from '../../store/cartSlice';
-import { useAuth } from '../../store/Context/AuthContext';
-import { loginSidebarActions } from "../../store/loginSidebarSlice";
-import { signupSidebarActions } from "../../store/signupSidebarSlice";
+import CartCard from '../../components/CartCard/CartCard';
+import { useAuth } from '../../store/Context/AuthContext/AuthContext';
+import { cartActions } from '../../store/Toolkit/slices/cartSlice/cartSlice';
+import { loginSidebarActions } from "../../store/Toolkit/slices/authSlice/loginSidebarSlice";
+import { signupSidebarActions } from "../../store/Toolkit/slices/authSlice/signupSidebarSlice";
+import EmptyCart from '../EmptyCartPage/EmptyCart';
 import styles from "./Cart.module.css";
-import CartCard from './Cart_Card/CartCard';
-import EmptyCart from './EmptyCart/EmptyCart';
 function Cart() {
     const cartItems = useSelector((state) => state.cart.items);
     const totalCartprice = useSelector((state) => state.cart.totalCartprice);
     const [addressInput, setAddressInput] = useState("");
-    const { currentUser, setCurrentUser } = useAuth();
+    const { currentUser } = useAuth();
     const dispatch = useDispatch();
     const handleLoginSidebarOpen = () => {
         dispatch(loginSidebarActions.toggleLoginSidebarOpen());
