@@ -22,7 +22,7 @@ function ConfirmedOrder() {
   const navigate = useNavigate();
 
   const handleGoBackHomepage = () => {
-    navigate('/');
+    navigate('/', { replace: true, });
   }
 
   return (
@@ -42,7 +42,7 @@ function ConfirmedOrder() {
           {cartItems.map((item, index) => {
             return (<div className={styles.itemInfo}>
               <div className={styles.itemName}> {index + 1}. {item.name}</div>
-              <div className={styles.itemPrice}> ₹ {item.price*item.quantity}</div>
+              <div className={styles.itemPrice}> ₹ {item.price * item.quantity}</div>
             </div>)
           })}
         </div>
