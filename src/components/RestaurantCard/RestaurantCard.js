@@ -43,7 +43,7 @@ function RestaurantCard(props) {
 
                 <div className={styles.offers}>
                     <span> <TbDiscount2 color="#8a584b" size={20} /></span>
-                    <p className={styles.offerDescription}>{offers}</p>
+                    <p className={styles.offerDescription}>{offers || "NO OFFERS AVAILABLE NOW"}</p>
                 </div>
                 <div className={styles['quickView']} style={{ opacity: `${quickView ? '100' : '0'}` }}>QUICK VIEW</div>
             </div>

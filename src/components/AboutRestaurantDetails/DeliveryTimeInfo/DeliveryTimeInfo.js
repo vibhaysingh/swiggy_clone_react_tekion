@@ -1,6 +1,6 @@
 import React from 'react';
-import RupeeIcon from '../../../assets/RupeeIcon';
-import TimerIcon from '../../../assets/TimerIcon';
+import RupeeIcon from '../../../assets/svgIcons/RupeeIcon';
+import TimerIcon from '../../../assets/svgIcons/TimerIcon';
 import styles from "./DeliveryTimeInfo.module.css"
 function DeliveryTimeInfo(props) {
     const { costForTwoMsg, deliveryTime } = props;

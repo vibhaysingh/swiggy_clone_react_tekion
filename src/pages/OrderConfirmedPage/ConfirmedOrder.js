@@ -1,14 +1,13 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import styles from './ConfirmedOrder.module.css';
-
-
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import NotFound from "../NotFoundPage/NotFound";
+import styles from "./ConfirmedOrder.module.css";
 
 function ConfirmedOrder() {
   const [isVisible, setIsVisible] = useState(true);
 
   const location = useLocation();
-  const { cartItems, totalCartprice } = location.state;
+  const { cartItems, totalCartprice } = location.state || { undefined, undefined };
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setIsVisible(false);
@@ -22,34 +21,38 @@ function ConfirmedOrder() {
   const navigate = useNavigate();
 
   const handleGoBackHomepage = () => {
-    navigate('/', { replace: true, });
-  }
+    navigate("/", { replace: true });
+  };
 
-  return (
-
+  return cartItems ? (
     <div className={styles.confirmedOrderOuterContainer}>
       <div className={styles.confirmedOrderContainer}>
-
-        {isVisible && <div className={styles.paymentSuccesfull}>
-          Payment Successful. Your order will arrive in 32 minutes.
-        </div>}
-        <div className={styles.orderSummary}>
-          Order Summary
-        </div>
+        {isVisible && (
+          <div className={styles.paymentSuccesfull}>
+            Payment Successful. Your order will arrive in 32 minutes.
+          </div>
+        )}
+        <div className={styles.orderSummary}>Order Summary</div>
 
         <div className={styles.orderDetailsContainer}>
-
           {cartItems.map((item, index) => {
-            return (<div className={styles.itemInfo}>
-              <div className={styles.itemName}> {index + 1}. {item.name}</div>
-              <div className={styles.itemPrice}> ₹ {item.price * item.quantity}</div>
-            </div>)
+            return (
+              <div className={styles.itemInfo}>
+                <div className={styles.itemName}>
+                  {" "}
+                  {index + 1}. {item.name}
+                </div>
+                <div className={styles.itemPrice}>
+                  {" "}
+                  ₹ {item.price * item.quantity}
+                </div>
+              </div>
+            );
           })}
         </div>
 
         <div className={styles.totalPaidAmountContainer}>
-
-          <div className={styles.totalPaidAmountText}>Total Paid Amount </div>
+          <div className={styles.totalPaidAmountText}>Total Paid Amount</div>
           <div className={styles.totalPaidAmount}>₹ {totalCartprice}</div>
         </div>
       </div>
@@ -57,7 +60,9 @@ function ConfirmedOrder() {
         Still Hungry ? Order More !
       </div>
     </div>
-  )
+  ) : (
+    <NotFound />
+  );
 }
 
-export default ConfirmedOrder
+export default ConfirmedOrder;

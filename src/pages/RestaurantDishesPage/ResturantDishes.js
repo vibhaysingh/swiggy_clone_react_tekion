@@ -7,6 +7,7 @@ import DishDropdown from '../../components/DishDropdowns/DishDropdown';
 import OfferCard from '../../components/OfferCard/OfferCard';
 import DishCardSkeleton from "../../components/SkeletonCardLoaders/DishCardSkeleton/DishCardSkeleton";
 import { SUCCESS } from "../../constants/responseStatus";
+import { getDropdownHeading, getInfo, getOffers } from '../../readers/swiggy';
 import { RestaurantDishContext } from '../../store/Context/RestaurantContext/RestaurantDishContext';
 import styles from './ResturantsDishes.module.css';
 function ResturantDishes() {
@@ -17,9 +18,9 @@ function ResturantDishes() {
     const response = await fetchRestaurantData(resturantId);
     if (response.status === SUCCESS) {
       const data = response.data;
-      const offers = data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers;
-      const info = data?.data?.cards[0]?.card?.card?.info;
-      const dropdownHeading = data?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+      const offers = getOffers(data);
+      const info = getInfo(data);
+      const dropdownHeading = getDropdownHeading(data);
       setRestaurantDishesInfo(() => {
         return {
           id: info?.id,

@@ -4,8 +4,10 @@ import ResturantDishes from "./pages/RestaurantDishesPage/ResturantDishes";
 import "./index.css";
 import Homepage from "./pages/Homepage/Homepage";
 import Cart from "./pages/CartPage/Cart";
-import ConfirmedOrder from "./pages/OrderSummaryPage/ConfirmedOrder";
+import ConfirmedOrder from "./pages/OrderConfirmedPage/ConfirmedOrder";
+
 function App() {
+  const isLoggedIn = localStorage.getItem("currentUser");
   return (
     <div>
       <BrowserRouter>
@@ -14,10 +16,11 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/resturants/:id" element={<ResturantDishes />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/orderConfirmed" element={<ConfirmedOrder/>} />
+          <Route path="/orderConfirmed" element={<ConfirmedOrder />} />
         </Routes>
       </BrowserRouter>
     </div>
   );
 }
+
 export default App;

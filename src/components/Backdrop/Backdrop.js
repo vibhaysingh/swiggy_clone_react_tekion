@@ -1,16 +1,15 @@
-import React from 'react';
-import styles from './Backdrop.module.css';
+import React from "react";
+import styles from "./Backdrop.module.css";
+
 function Backdrop(props) {
-    const { handleModalShow } = props;
+  const { handleModalShow } = props;
+  const handleModalShowHandler = () => {
+    handleModalShow((prevState) => !prevState);
+  };
 
-    const handleModalShowHandler = () => {
-        handleModalShow((prevState) => !prevState);
-    }
-
-    return (
-
-        <div className={styles.backdrop} onClick={handleModalShowHandler} ></div>
-    )
+  return (
+    <div className={styles.backdrop} onClick={handleModalShowHandler}></div>
+  );
 }
 
-export default Backdrop
+export default Backdrop;

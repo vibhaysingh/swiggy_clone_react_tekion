@@ -1,0 +1,16 @@
+.NotFoundContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.NotFoundImage {
+    width: 800px;
+    height: 400px;
+}
+
+.NotFoundImage>img {
+    width: 100%;
+    height: 100%;
+}

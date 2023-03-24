@@ -1,7 +1,7 @@
 import React from 'react';
 import { FiMinus, FiPlus } from "react-icons/fi";
 import { useDispatch } from 'react-redux';
-import VegIcons from '../../assets/VegIcons';
+import VegIcons from '../../assets/svgIcons/VegIcons';
 import { cartActions } from '../../store/Toolkit/slices/cartSlice/cartSlice';
 import styles from "./CartCard.module.css";
 function CartCard(props) {
