@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import NotFound from "../NotFoundPage/NotFound";
@@ -7,7 +8,7 @@ function ConfirmedOrder() {
   const [isVisible, setIsVisible] = useState(true);
 
   const location = useLocation();
-  const { cartItems, totalCartprice } = location.state || { undefined, undefined };
+  const { cartItems, totalCartprice } = location.state || undefined;
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setIsVisible(false);
@@ -35,7 +36,7 @@ function ConfirmedOrder() {
         <div className={styles.orderSummary}>Order Summary</div>
 
         <div className={styles.orderDetailsContainer}>
-          {cartItems.map((item, index) => {
+          {_.map(cartItems, (item, index) => {
             return (
               <div className={styles.itemInfo}>
                 <div className={styles.itemName}>

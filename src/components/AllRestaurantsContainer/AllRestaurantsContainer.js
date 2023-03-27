@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import _ from "lodash";
+import React, { useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchAllRestaurantData } from "../../actions/fetchAllRestaurantData";
 import { IMG_CDN_URL } from "../../constants/constant";
 import { SUCCESS } from "../../constants/responseStatus";
-import RestaurantCard from '../RestaurantCard/RestaurantCard';
-import RestaurantCardSkeleton from '../SkeletonCardLoaders/RestaurantCardSkeleton/RestaurantCardSkeleton';
+import RestaurantCard from "../RestaurantCard/RestaurantCard";
+import RestaurantCardSkeleton from "../SkeletonCardLoaders/RestaurantCardSkeleton/RestaurantCardSkeleton";
 import styles from "./AllRestaurantsContainer.module.css";
+
 export default function AllRestaurantsContainer(props) {
   const { filter } = props;
   const [restuarantCardsData, setRestuarantCardsData] = useState([]);
@@ -17,22 +19,22 @@ export default function AllRestaurantsContainer(props) {
       if (response.data.length === 0) {
         setHasMore(false);
       } else {
-        setRestuarantCardsData((restuarantCardsData) => [...restuarantCardsData, ...response?.data?.data?.cards]);
+        setRestuarantCardsData((restuarantCardsData) => [
+          ...restuarantCardsData,
+          ...response?.data?.data?.cards,
+        ]);
         setOffset((prevOffset) => prevOffset + 15);
       }
+    } else {
+      console.log(response.error);
     }
-    else {
-    
-    }
-  }
+  };
   useEffect(() => {
     setRestuarantCardsData([]);
     getData();
-
-  }, [filter])
+  }, [filter]);
 
   return (
-
     <InfiniteScroll
       dataLength={restuarantCardsData.length}
       next={getData}
@@ -40,11 +42,24 @@ export default function AllRestaurantsContainer(props) {
       loader={<RestaurantCardSkeleton count={4} />}
     >
       <div className={styles.allResturantContainer}>
-        {
-          restuarantCardsData.length ?
-            (restuarantCardsData.map((card, index) => {
-              const { data: { data: { cloudinaryImageId, name, cuisines, id, avgRating, deliveryTime, costForTwoString, aggregatedDiscountInfo } } } = card;
-              return <RestaurantCard
+        {restuarantCardsData.length ? (
+          _.map(restuarantCardsData, (card, index) => {
+            const {
+              data: {
+                data: {
+                  cloudinaryImageId,
+                  name,
+                  cuisines,
+                  id,
+                  avgRating,
+                  deliveryTime,
+                  costForTwoString,
+                  aggregatedDiscountInfo,
+                },
+              },
+            } = card;
+            return (
+              <RestaurantCard
                 imgUrl={`${IMG_CDN_URL}${cloudinaryImageId}`}
                 title={name}
                 cuisines={cuisines}
@@ -55,10 +70,12 @@ export default function AllRestaurantsContainer(props) {
                 costForTwo={costForTwoString}
                 offers={aggregatedDiscountInfo?.descriptionList?.[0]?.meta}
               />
-            }
-            )) : (<RestaurantCardSkeleton count={16} />)
-        }
+            );
+          })
+        ) : (
+          <RestaurantCardSkeleton count={16} />
+        )}
       </div>
     </InfiniteScroll>
-  )
+  );
 }

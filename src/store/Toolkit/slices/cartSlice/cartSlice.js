@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import _ from "lodash";
 
 const cartSlice = createSlice({
     name: "cart",
@@ -11,7 +12,7 @@ const cartSlice = createSlice({
     reducers: {
         addItemToCart(state, action) {
             const newItem = action.payload;
-            const existingItem = state.items.find((item) => item.id === newItem.id);
+            const existingItem = _.find(state.items, (item) => item.id === newItem.id);
             state.totalQuantity++;
             state.totalCartprice += newItem.price;
             if (!state.resturantId)
@@ -35,7 +36,7 @@ const cartSlice = createSlice({
         },
         removeItemFromCart(state, action) {
             const id = action.payload;
-            const existingItem = state.items.find((item) => item.id === id);
+            const existingItem = _.find(state.items, (item) => item.id === id);
             state.totalQuantity--;
             state.totalCartprice -= existingItem.price;
             if (existingItem.quantity === 1) {

@@ -8,7 +8,7 @@ import {
   checkNumberOnlyRegex,
   intialLoginState,
   loginReducer,
-} from "./Helper/Helper";
+} from "./LoginHelper/LoginHelper";
 import styles from "./Login.module.css";
 
 function Login(props) {
@@ -65,7 +65,7 @@ function Login(props) {
         setIsUserFound(false);
         setLoading(false);
         dispatchLoginState({ type: "CLEAR_LOGIN" });
-      }, 2000);
+      }, 1300);
       return;
     }
 
@@ -84,7 +84,7 @@ function Login(props) {
         })
       );
       dispatchLoginState({ type: "CLEAR_LOGIN" });
-    }, 2000);
+    }, 1300);
 
     setIsUserFound(true);
   };

@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -28,7 +29,7 @@ function Cart() {
   const handleConfirmedOrder = () => {
     setTimeout(() => {
       navigate("/orderConfirmed", {
-     
+
         state: {
           cartItems: cartItems,
           totalCartprice: totalCartprice,
@@ -134,7 +135,7 @@ function Cart() {
               </div>
             </div>
             <div className={styles.cart_cards}>
-              {cartItems.map((item, index) => {
+              {_.map(cartItems, (item, index) => {
                 return (
                   <CartCard
                     key={index}

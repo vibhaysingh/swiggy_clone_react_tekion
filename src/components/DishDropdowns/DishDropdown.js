@@ -1,12 +1,13 @@
+import _ from "lodash";
 import React, { useState } from 'react';
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { viewCartImageLink } from "../../constants/constant";
-import styles from "./DishDropdown.module.css"
-import Modal from "../Modal/Modal";
 import DishCard from '../DishCard/DishCard';
+import Modal from "../Modal/Modal";
 import { addToCartBottomPopup, getDropdownHeadingAndDishes } from './dishdropdown.helper';
+import styles from "./DishDropdown.module.css";
 
 function DishDropdown(props) {
     const { dropdownHeading, restaurantName, area, resturantImageId } = props;
@@ -28,7 +29,7 @@ function DishDropdown(props) {
     return (
         <div>
             {
-                dropdownHeadingAndDishes && dropdownHeadingAndDishes.map((heading, index) => {
+                dropdownHeadingAndDishes && _.map(dropdownHeadingAndDishes, (heading, index) => {
                     return (
                         heading.dishInfo.length > 0 &&
                         <div className={styles.dishDropdown} key={index}>
@@ -43,7 +44,7 @@ function DishDropdown(props) {
                             </div >
 
                             {
-                                clickedDropdown.includes(index) && heading.dishInfo.map((dish, index) => {
+                                clickedDropdown.includes(index) && _.map(heading.dishInfo, (dish, index) => {
                                     return (
                                         <DishCard
                                             dishInfo={dish}

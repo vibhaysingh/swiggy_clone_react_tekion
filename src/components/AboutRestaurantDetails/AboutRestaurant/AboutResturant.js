@@ -1,6 +1,7 @@
 import StarRateIcon from '@mui/icons-material/StarRate';
 import React from 'react';
 // import styles from "../../pages/RestaurantDishesPage/ResturantsDishes.module.css";
+import _ from "lodash";
 import styles from "./AboutResturant.module.css";
 
 function AboutResturant(props) {
@@ -13,7 +14,7 @@ function AboutResturant(props) {
                     {restaurantName}
                 </p>
                 <p className={styles.resturantCuisine}>
-                    {cuisines && cuisines.map((cuisine, index) => cuisine + (index < cuisines.length - 1 ? ', ' : ''))}
+                    {cuisines && _.map(cuisines, (cuisine, index) => cuisine + (index < cuisines.length - 1 ? ', ' : ''))}
                 </p>
                 <p className={styles.resturantLocation}>
                     {area}
