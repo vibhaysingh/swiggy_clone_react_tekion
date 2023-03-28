@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.cb3370c3.css",
+    "main.js": "/static/js/main.d7a0cf3e.js",
+    "static/media/404NotFound.jpg": "/static/media/404NotFound.38da77fa310c806b1db8.jpg",
+    "static/media/sidebar_food.png": "/static/media/sidebar_food.3a527b61462cbd12467b.png",
+    "static/media/Swiggy Logo.png": "/static/media/Swiggy Logo.88e6528c13130a2decb4.png",
+    "index.html": "/index.html",
+    "main.cb3370c3.css.map": "/static/css/main.cb3370c3.css.map",
+    "main.d7a0cf3e.js.map": "/static/js/main.d7a0cf3e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cb3370c3.css",
+    "static/js/main.d7a0cf3e.js"
+  ]
+}
