@@ -20,6 +20,8 @@ function CartCard(props) {
     const removeFromCartHandler = (foodId) => {
         dispatch(cartActions.removeItemFromCart(foodId));
     }
+
+    
     return (
 
         <div className={styles.cartCard_container}>
@@ -31,16 +33,17 @@ function CartCard(props) {
             <div className={styles.addButton}
             >
                 <span
-                    className={styles.cartCardDecreaseItemCount} style={{ color: 'grey' }}
+                    className={styles.cartCardDecreaseItemCount} style={{ color: '#535665' }}
                     onClick={() => removeFromCartHandler(id)}
                 ><FiMinus size={15} /></span>
                 <span className={styles.cartCard_ItemCount}> {quantity}</span>
-                <span className={styles.cartCard_increaseItemCount}
+
+                <span className={styles.cartCardIncreaseItemCount}
                     onClick={() => addToCartHandler(id, dishName, price)}
-                    style={{ color: 'green' }}
+                    style={{ color: '#535665' }}
                 ><FiPlus size={15} /></span>
             </div>
-            <div className={styles.cartCard_price}>₹{price * quantity} </div>
+            <div className={styles.cartCard_price}>${price * quantity} </div>
         </div>
     )
 }

@@ -33,6 +33,12 @@ const cartSlice = createSlice({
                 existingItem.quantity++;
                 existingItem.totalPrice = existingItem.totalPrice + newItem.price;
             }
+            localStorage.setItem('cartItems', JSON.stringify(state.items));
+            localStorage.setItem('totalQuantity', JSON.stringify(state.totalQuantity));
+            localStorage.setItem('totalCartprice', JSON.stringify(state.totalCartprice));
+            localStorage.setItem('resturantId', JSON.stringify(state.resturantId));
+
+            
         },
         removeItemFromCart(state, action) {
             const id = action.payload;
@@ -44,12 +50,26 @@ const cartSlice = createSlice({
             } else {
                 existingItem.quantity--;
             }
+            localStorage.setItem('cartItems', JSON.stringify(state.items));
+            localStorage.setItem('totalQuantity', JSON.stringify(state.totalQuantity));
+            localStorage.setItem('totalCartprice', JSON.stringify(state.totalCartprice));
+            localStorage.setItem('resturantId', JSON.stringify(state.resturantId));
         },
         clearCart(state) {
             state.items = [];
             state.totalQuantity = 0;
             state.totalCartprice = 0;
             state.resturantId = null;
+            localStorage.removeItem('cartItems', JSON.stringify(state.items));
+            localStorage.setItem('totalQuantity', JSON.stringify(state.totalQuantity));
+            localStorage.removeItem('totalCartprice', JSON.stringify(state.totalCartprice));
+            localStorage.removeItem('resturantId', JSON.stringify(state.resturantId));
+        },
+        initCart(state,action){
+            state.items = action.payload.cartItems||[];
+            state.totalQuantity = action.payload.totalQuantity||0;
+            state.totalCartprice = action.payload.totalCartprice||0;
+            state.resturantId = action.payload.resturantId||null;
         }
     }
 

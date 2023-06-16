@@ -1,20 +1,30 @@
-import _ from "lodash";
-import { useState } from "react";
+import _, { set } from "lodash";
+import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
+import { useState, useRef, useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import foodImageLink from "../../assets/images/sidebar_food.png";
 import CartCard from "../../components/CartCard/CartCard";
 import { useAuth } from "../../store/Context/AuthContext/AuthContext";
 import { loginSidebarActions } from "../../store/Toolkit/slices/authSlice/loginSidebarSlice";
 import { signupSidebarActions } from "../../store/Toolkit/slices/authSlice/signupSidebarSlice";
 import { cartActions } from "../../store/Toolkit/slices/cartSlice/cartSlice";
+import PaymentIframe from "../PaymentIframe/PaymentIframe";
 import EmptyCart from "../EmptyCartPage/EmptyCart";
 import styles from "./Cart.module.css";
+// import { TransactionTokenContext } from "../../store/Context/TransactionToken/TransactionToken";
+import { Oval } from "react-loader-spinner";
+import TpaySDK from "../../components/TPaySDK/TpaySDK";
+
 
 function Cart() {
   const cartItems = useSelector((state) => state.cart.items);
   const totalCartprice = useSelector((state) => state.cart.totalCartprice);
-  const [addressInput, setAddressInput] = useState("");
+
+  cosnt [transactionToken,setTransactionToken]= useState('');
+
+  // const [addressInput, setAddressInput] = useState("");
   const { currentUser } = useAuth();
   const dispatch = useDispatch();
   const handleLoginSidebarOpen = () => {
@@ -27,20 +37,185 @@ function Cart() {
 
   const navigate = useNavigate();
   const handleConfirmedOrder = () => {
-    setTimeout(() => {
-      navigate("/orderConfirmed", {
-
-        state: {
-          cartItems: cartItems,
-          totalCartprice: totalCartprice,
-        },
-      });
-      dispatch(cartActions.clearCart());
-    }, 1500);
+    navigate("/orderConfirmed", {
+      state: {
+        cartItems: cartItems,
+        totalCartprice: totalCartprice,
+      },
+    });
+    dispatch(cartActions.clearCart());
   };
 
-  const handleAddressInput = (event) => {
-    setAddressInput(event.target.value);
+  // const handleAddressInput = (event) => {
+  //   setAddressInput(event.target.value);
+  // };
+
+  /// Iframe code starts here -------------------------------------------------------------------------------------- ///
+
+  const [isTransactionFailed, setIsTransactionFailed] = useState(false);
+  const [isIFrameLoading, setisIFrameLoading] = useState(true);
+  const [transactionToken, setTransactionToken] = useState('')
+
+  const getTransactionToken = async () => {
+    axios
+      .post(
+        "https://tst-tpay-sdk.tekion.xyz/api/tpay-sdk-api/p/v1/transactions/initiate",
+        {
+          amount: totalCartprice,
+          currency: "USD",
+          idempotencyKey: uuidv4(),
+          notes: "test-notes",
+          clientOrderId: "client-order-id-1",
+          surchargeDisabled: true,
+          metadata: {
+            key1: "value1",
+          },
+          enablePaymentModes: [],
+          disablePaymentModes: [],
+        },
+        {
+          headers: {
+            "x-client-id": "tpay_oBuYibDweO",
+            "x-client-secret":
+              "cskstg_2ZZsu7Xh9yJ2cGg5cXQZ314LJe5DGj2naJLGv+sz",
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then(
+        (response) => {
+          const token = _.get(response, "data.data.transactionToken");
+          setTransactionToken(token);
+          console.log("tokesn ", token);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  };
+ 
+  // useEffect(() => {
+
+  //   if (transactionToken === "" && totalCartprice > 0) {
+  //     getTransactionToken();
+  //   }
+  // }, [transactionToken]);
+
+  const {pathname} = useLocation();
+  if(pathname==='/cart'){
+    getTransactionToken();
+  }
+
+  // const eventType = _.property("data.type");
+  // const eventValue = _.property("data.value");
+  // const eventOrigin = _.property("origin");
+
+  const TEKION_SDK_IFRAME_URL = "https://tst-tpay-sdk.tekion.xyz/tpay-sdk-ui/";
+
+  const SDK_EVENT_TYPE = {
+    TRANSACTION_SUCCESSFUL: "transaction_successful",
+    TRANSACTION_FAILURE: "transaction_failure",
+    TRANSACTION_IN_PROGRESS: "transaction_in_progress",
+    SDK_LOADED: "sdk_loaded",
+    TRANSACTION_LOCK: "transaction_lock",
+    IFRAME_READY: "iframe_ready",
+    IFRAME_PROPS: "iframe_props",
+  };
+  const ACCEPTED_ORIGINS = "*";
+
+  
+
+  // const postMessageToIframe = (type, iFrameRef, value, data) =>
+  //   iFrameRef?.current?.contentWindow?.postMessage(
+  //     { type, value, ...data },
+  //     ACCEPTED_ORIGINS
+  //   );
+
+  // const handleIFrameReady = (iFrameRef) => {
+  //   // const { iFrameRef } = params;
+  //   // const { transactionToken } = getState();
+  //   postMessageToIframe(IFRAME_EVENT_TYPE.IFRAME_PROPS, iFrameRef, {
+  //     transactionToken,
+  //     isDealerApp: false,
+  //     loader: 0,
+  //   });
+  // };
+
+  // const handleTransactionSuccess = async (payload) => {
+  //   handleConfirmedOrder();
+  //   setIsTransactionFailed(false);
+  // };
+
+  // const handleFailedTransaction = () => {
+  //   setIsTransactionFailed(true);
+  //   alert("Payment Failed, Please Try again!");
+
+  //   console.log("payment failed ");
+  // };
+
+  // const iFrameRef = useRef(null);
+  // const windowMessageHandler = (iFrameRef) => (event) => {
+  //   if (_.includes(TEKION_SDK_IFRAME_URL, eventOrigin(event))) {
+  //     switch (eventType(event)) {
+  //       case IFRAME_EVENT_TYPE.SDK_ON_LOAD:
+  //         setisIFrameLoading(false);
+  //         break;
+  //       case IFRAME_EVENT_TYPE.TRANSACTION_SUCCESSFUL:
+  //         const payload = eventValue(event);
+  //         handleTransactionSuccess(payload);
+  //         break;
+  //       case IFRAME_EVENT_TYPE.IFRAME_READY:
+  //         handleIFrameReady(iFrameRef);
+  //         break;
+  //       default:
+  //         handleFailedTransaction();
+  //     }
+  //   }
+  // };
+  // const addIframeListener = (iFrameRef) => {
+  //   if (typeof window === "undefined") return;
+  //   window.addEventListener("message", windowMessageHandler(iFrameRef));
+  // };
+  // const onFrameLoad = () => {
+  //   addIframeListener(iFrameRef);
+  // };
+
+  const postMessageToParent = (type, value, data) =>
+  window.parent.postMessage({ type, value, ...data }, ACCEPTED_ORIGINS);
+
+  const successCallBack = ({ params = EMPTY_OBJECT }) => {
+    const { response } = params;
+    console.log("succesCallback ",params);
+    postMessageToParent(SDK_EVENT_TYPE.TRANSACTION_SUCCESSFUL, { response });
+  };
+  
+  const failureCallBack = ({ params = EMPTY_OBJECT }) => {
+    const { error } = params;
+    console.log("succesCallback ",params);
+    postMessageToParent(SDK_EVENT_TYPE.TRANSACTION_FAILURE, { error });
+  };
+  
+  const onProgressCallBack = ({ params = EMPTY_OBJECT }) => {
+    const { value } = params;
+    console.log("onProgressCallBack ",params);
+    postMessageToParent(SDK_EVENT_TYPE.TRANSACTION_IN_PROGRESS, value);
+  };
+  
+  const onSdkLoadCallBack = ({ params = EMPTY_OBJECT }) => {
+    const { value } = params;
+    console.log("onSdkLoadCallBack ",params);
+    postMessageToParent(SDK_EVENT_TYPE.SDK_LOADED, value);
+  };
+  
+  const onTransactionLockCallBack = ({ params = EMPTY_OBJECT }) => {
+    const { value } = params;
+    console.log("onTransactionLockCallBack ",params);
+    postMessageToParent(SDK_EVENT_TYPE.TRANSACTION_LOCK, value);
+  };
+
+  const handleRetryButton = () => {
+    window.location.reload();
+    setIsTransactionFailed(false);
   };
 
   return cartItems.length ? (
@@ -83,7 +258,7 @@ function Cart() {
               </div>
             )}
           </div>
-          <div className={styles.deliveryAdressInputDetails}>
+          {/* <div className={styles.deliveryAdressInputDetails}>
             <div className={styles.addressHeading}>Delivery address</div>
             <div className={styles.inputAdress}>
               {!currentUser && <p>Login to Enter Your Address</p>}
@@ -96,23 +271,51 @@ function Cart() {
                 ></textarea>
               )}
             </div>
-          </div>
+          </div> */}
           <div className={styles.paymentContainer}>
             <div className={styles.paymentHeading}>Payment</div>
             <div className={styles.totalAmount}>
               {" "}
               Your total cart value is{" "}
-              <strong>Rs {totalCartprice || 0}. </strong>
+              <strong>$ {totalCartprice || 0}. </strong>
               {!currentUser
                 ? "Login to proceed your payment."
                 : "Proceed to payment to confirm your order."}
             </div>
-            {addressInput && currentUser && (
+            {currentUser && (
               <div
-                className={styles.paymentButton}
-                onClick={handleConfirmedOrder}
+                className={styles.iframe}
+                // onClick={handleConfirmedOrder}
               >
-                Click to Confirm Your Payment
+                {/* Click to Confirm Your Payment */}
+                {isIFrameLoading&&<Oval
+                  height={40}
+                  width={40}
+                  color="#494DAC"
+                  wrapperStyle={{
+                    position:'absolute',
+                    top:'50%',
+                    left:'50%',
+                    transform: 'translate(-50%, -50%)',
+                    
+                  }}
+                  wrapperClass=""
+                  visible={isIFrameLoading}
+                  ariaLabel="oval-loading"
+                  secondaryColor="#8f91e4"
+                  strokeWidth={3}
+                  strokeWidthSecondary={3}
+                />}
+               {transactionToken!=='' && 
+               <TpaySDK 
+                    transactionToken={transactionToken} 
+                    onSuccess={successCallBack}
+                    onFailure={failureCallBack}
+                    onProgress={onProgressCallBack}
+                    onSdkLoad={onSdkLoadCallBack}
+                    onTransactionLock={onTransactionLockCallBack}
+                  />
+               }
               </div>
             )}
           </div>
@@ -150,9 +353,14 @@ function Cart() {
             <div className={styles.totalAmount_container}>
               <p className={styles.to_pay}>TO PAY</p>
               <p className={styles.totalprice}>
-                ₹{Number(totalCartprice).toFixed(2) || 0}
+                ${Number(totalCartprice).toFixed(2) || 0}
               </p>
             </div>
+            {isTransactionFailed && (
+              <div className={styles.retryButton}>
+                <button onClick={handleRetryButton}>Retry</button>
+              </div>
+            )}
           </div>
         </div>
       </div>

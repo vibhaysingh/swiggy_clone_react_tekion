@@ -65,7 +65,7 @@ function DishCard(props) {
                         dishInfo.name}
                     </p>
                     <p className={styles.dishPrice}>
-                        ₹ {dishPrice}
+                        $ {dishPrice}
                     </p>
                     <p className={styles.dishDescription}>
                         {dishInfo?.description?.replace(/[[\]]/g, "")}

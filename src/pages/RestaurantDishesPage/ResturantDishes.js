@@ -15,6 +15,7 @@ function ResturantDishes() {
   const { restaurantDishesInfo, setRestaurantDishesInfo } = useContext(
     RestaurantDishContext
   );
+  
   const resturantId = useParams().id;
 
   const getData = async () => {
@@ -43,6 +44,7 @@ function ResturantDishes() {
       console.log(response.error);
     }
   };
+
   useEffect(() => {
     if (!restaurantDishesInfo || restaurantDishesInfo.id !== resturantId) {
       getData();

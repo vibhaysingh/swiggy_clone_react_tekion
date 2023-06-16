@@ -45,7 +45,7 @@ function ConfirmedOrder() {
                 </div>
                 <div className={styles.itemPrice}>
                   {" "}
-                  ₹ {item.price * item.quantity}
+                  $ {item.price * item.quantity}
                 </div>
               </div>
             );
@@ -54,7 +54,7 @@ function ConfirmedOrder() {
 
         <div className={styles.totalPaidAmountContainer}>
           <div className={styles.totalPaidAmountText}>Total Paid Amount</div>
-          <div className={styles.totalPaidAmount}>₹ {totalCartprice}</div>
+          <div className={styles.totalPaidAmount}>$ {totalCartprice}</div>
         </div>
       </div>
       <div onClick={handleGoBackHomepage} className={styles.goToHomebutton}>

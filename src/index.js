@@ -5,17 +5,20 @@ import App from './App';
 import './index.css';
 import { AuthProvider } from './store/Context/AuthContext/AuthContext';
 import { DataProvider } from './store/Context/RestaurantContext/RestaurantDishContext';
+import { TransactionTokenProvider } from './store/Context/TransactionToken/TransactionToken';
 import { store } from './store/Toolkit/store/store';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <AuthProvider >
       <Provider store={store}>
         <DataProvider>
+          <TransactionTokenProvider>
           <App />
-        </DataProvider>
+          </TransactionTokenProvider>
+        </DataProvider>       
       </Provider>
     </AuthProvider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );

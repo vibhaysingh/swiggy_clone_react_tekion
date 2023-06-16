@@ -1,7 +1,9 @@
 .cart_page {
     padding: 150px 150px 0px 150px;
     background-color: rgb(233, 236, 238);
-    min-height: 100vh;
+    /* min-height: 200vh; */
+    /* height: 195vh; */
+    /* background-color: red; */
 }
 
 .cart_container {
@@ -216,11 +218,12 @@
 .paymentContainer {
     margin-top: 20px;
     background-color: white;
-    padding: 10px 20px;
-    padding-bottom: 20px;
+    padding: 20px 20px;
+    /* padding-bottom: 20px; */
     display: flex;
     flex-direction: column;
-    height: 155px;
+    /* height: 140%; */
+
 }
 
 .paymentHeading {
@@ -255,6 +258,7 @@
     position: relative;
 
 
+
 }
 
 .paymentButton:hover {
@@ -284,4 +288,30 @@
     margin-top: 10px;
     font-weight: bold;
     height: 100px;
+}
+
+.iframe{
+    /* height: 300px; */
+    margin-top: 20px;
+    align-self: center;
+    /* background-color: yellow; */
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    /* margin-bottom: 30px; */
+    position: relative;
+    
+}
+.retryButton{
+    position: relative;
+    top: 20%;
+    left: 30%;
+}
+.retryButton>button{
+    padding: 13px 70px;
+    border: none;;
+    outline: none;
+    background-color: #494DAC;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    letter-spacing: 1.5px;
 }

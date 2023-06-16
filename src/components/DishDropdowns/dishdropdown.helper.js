@@ -49,7 +49,7 @@ export function addToCartBottomPopup(handleCartPopup, totalQuantity, totalAmount
         <div className={styles.totalCartItemsAndTotalCartPrice}>
             <div>{totalQuantity}{" "}Item</div>
             <div>|</div>
-            <div>₹{totalAmount}</div>
+            <div>${totalAmount}</div>
         </div>
         <div className={styles.viewCart}>
             <div>View Cart</div>
