@@ -29,6 +29,7 @@ export default function AllRestaurantsContainer(props) {
       console.log(response.error);
     }
   };
+
   useEffect(() => {
     setRestuarantCardsData([]);
     getData();
